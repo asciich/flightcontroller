@@ -9,4 +9,3 @@ It was created and cofigured using LibrePilot 15.09.
 * [STL Files for 3D print](https://www.thingiverse.com/thing:2492098)
 * [Youtube video of acopter01](https://youtu.be/Fk9fojQVrpE)
 
-https://youtu.be/Fk9fojQVrpE
