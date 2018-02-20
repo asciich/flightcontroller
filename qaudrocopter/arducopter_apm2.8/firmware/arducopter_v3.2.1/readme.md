@@ -23,3 +23,4 @@ exit
 ```
 
 [Source for this tutorial](http://firmware.ardupilot.org/)
+[Latest Firmware](http://firmware.ardupilot.org/Copter/stable/apm2-quad/)
