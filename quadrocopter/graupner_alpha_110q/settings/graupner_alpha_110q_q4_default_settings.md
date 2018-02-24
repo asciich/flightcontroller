@@ -1,5 +1,7 @@
 # Graupner Alpha 110q original settings Q4 Copter version
 
+[Blog entry about this settings](https://asciich.ch/wordpress/graupner-alpha100q-werkseinstellungen-copter-firmware-q4/)
+
 ```
 RECEIVER Q.04   >
 - ALARM VOLT:       3.2 V
