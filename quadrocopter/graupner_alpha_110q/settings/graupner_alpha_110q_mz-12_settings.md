@@ -27,7 +27,7 @@ Servo-Einst.
 
 Geber Einst.
 - E5    SW4/5    +100%   +100%
-- E6    2        +100%   +125%
+- E6    2        +100%   +100%
 
 D/R Expo
 - QR    100%    +30%    ---
