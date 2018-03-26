@@ -74,4 +74,4 @@ Lehrer Schül.
 
 Info-Anz.
 Firmwarevers, 1.071
-```
+```scrscr
