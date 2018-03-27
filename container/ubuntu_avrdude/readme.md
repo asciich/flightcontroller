@@ -1,16 +1,5 @@
-# ubuntu_avrdude Container
+# Container avrdude
 
-This container contains avrdude used to programm microcontrollers.
+The container asciich/avrdude is now available on [Docker Hub](https://hub.docker.com/r/asciich/avrdude/).
 
-## Build container
-
-To build the container run ```./build_container.sh```
-
-## Start container
-
-The container needs ```--privileged``` mode to be able to programm microcontrollers.
-Starting the container with the command below will allow access to the current working directory in /local_dir/
-
-```
-docker run --rm --privileged -v $(pwd):/local_dir/ -it asciich/ubuntu_avrdude /bin/bash
-```
+[The source for this container is on Github](https://github.com/asciich/docker-avrdude)
