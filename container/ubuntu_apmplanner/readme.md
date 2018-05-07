@@ -1,4 +1,4 @@
-# Container avrdude
+# Container apmplanner2
 
 The container asciich/apmplanner2 is now available on [Docker Hub](https://hub.docker.com/r/asciich/apmplanner2/).
 
