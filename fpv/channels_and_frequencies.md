@@ -66,9 +66,9 @@ All frequencies are in Mhz.
 | 5925     |        |        | CH 7   |        |           | Yes                |            |
 | 5945     |        |        | CH 8   |        |           | Yes                |            |
 
-## Model specific channel or frequency lists
+## Transmitters
 
-* [Mantis85](../quadrocopter/mantis85/readme.md)
+* [Transmitter list](transmitter/readme.md)
 
 ## Sources
 
