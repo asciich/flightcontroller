@@ -70,6 +70,10 @@ All frequencies are in Mhz.
 
 * [Transmitter list](transmitter/readme.md)
 
+## Receivers
+
+* [Receiver list](receiver/readme.md)
+
 ## Sources
 
 * [Graupner Alpha 110q manual](https://www.graupner.de/media/pdf/79/ca/6a/S5012_RTF_RFH_FPV_Alpha_110Q_EN5a30cd9034385.pdf)
