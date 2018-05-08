@@ -16,55 +16,55 @@ All frequencies are in Mhz.
 
 ## Frequency list
 
-| Freqency | Band A | Band B | Band E | Band F | Race Band | HAM license needed | Alpha 110q | FT951       | Dji Goggles |
-|:--------:|:------:|:------:|:------:|:------:|:---------:|:------------------:|:----------:|:-----------:|:-----------:|
-| 5362     |        |        |        |        |           | Yes                |            |             |             |
-| 5399     |        |        |        |        |           | Yes                |            |             |             |
-| 5436     |        |        |        |        |           | Yes                |            |             |             |
-| 5473     |        |        |        |        |           | Yes                |            |             |             |
-| 5510     |        |        |        |        |           | Yes                |            |             |             |
-| 5547     |        |        |        |        |           | Yes                |            |             |             |
-| 5584     |        |        |        |        |           | Yes                |            |             |             |
-| 5621     |        |        |        |        |           | Yes                |            |             | Yes         |
-| 5645     |        |        | CH 4   |        |           | Yes                |            |             | Yes         |
-| 5658     |        |        |        |        | CH 1      | Yes                |            |             | Yes         |
-| 5665     |        |        | CH 3   |        |           | Yes                |            |             | Yes         |
-| 5685     |        |        | CH 2   |        |           | Yes                |            |             | Yes         |
-| 5695     |        |        |        |        | CH 2      | Yes                |            |             | Yes         |
-| 5705     |        |        | CH 1   |        |           | Yes                |            |             | Yes         |
-| 5725     | CH 8   |        |        |        |           | Yes                |            |             | Yes         |
-| 5732     |        |        |        |        | CH 3      | Yes                |            |             | Yes         |
-| 5733     |        | CH 1   |        |        |           |                    |            | Band B CH 1 | Yes         |
-| 5740     |        |        |        | CH 1   |           |                    | CH 1       | Band D CH 1 | Yes         |
-| 5745     | CH 7   |        |        |        |           |                    |            | Band A CH 7 | Yes         |
-| 5752     |        | CH 2   |        |        |           |                    |            | Band B CH 2 | Yes         |
-| 5760     |        |        |        | CH 2   |           |                    |            | Band D CH 2 | Yes         |
-| 5765     | CH 6   |        |        |        |           |                    |            | Band A CH 6 | Yes         |
-| 5769     |        |        |        |        | CH 4      |                    |            |             | Yes         |
-| 5771     |        | CH 3   |        |        |           |                    |            | Band B CH 3 | Yes         |
-| 5780     |        |        |        | CH 3   |           |                    | CH 3       | Band D CH 3 | Yes         |
-| 5785     | CH 5   |        |        |        |           |                    |            | Band A CH 5 | Yes         |
-| 5790     |        | CH 4   |        |        |           |                    |            | Band B CH 4 | Yes         |
-| 5800     |        |        |        | CH 4   |           |                    |            | Band D CH 4 | Yes         |
-| 5805     | CH 4   |        |        |        |           |                    |            | Band A CH 4 | Yes         |
-| 5806     |        |        |        |        | CH 5      |                    |            |             | Yes         |
-| 5809     |        | CH 5   |        |        |           |                    |            | Band B CH 5 | Yes         |
-| 5820     |        |        |        | CH 5   |           |                    | CH 5       | Band D CH 5 | Yes         |
-| 5825     | CH 3   |        |        |        |           |                    |            | Band A CH 3 | Yes         |
-| 5828     |        | CH 6   |        |        |           |                    |            | Band B CH 6 | Yes         |
-| 5840     |        |        |        | CH 6   |           |                    |            | Band D CH 6 | Yes         |
-| 5843     |        |        |        |        | CH 6      |                    |            |             | Yes         |
-| 5845     | CH 2   |        |        |        |           |                    |            | Band A CH 2 | Yes         |
-| 5847     |        | CH 7   |        |        |           |                    |            | Band B CH 7 | Yes         |
-| 5860     |        |        |        | CH 7   |           |                    | CH 7       | Band D CH 7 | Yes         |
-| 5865     | CH 1   |        |        |        |           |                    |            | Band A CH 1 | Yes         |
-| 5866     |        | CH 8   |        |        |           |                    |            | Band B CH 8 | Yes         |
-| 5880     |        |        |        | CH 8   | CH 7      | Yes                |            |             | Yes         |
-| 5885     |        |        | CH 5   |        |           | Yes                |            |             | Yes         |
-| 5905     |        |        | CH 6   |        |           | Yes                |            |             | Yes         |
-| 5917     |        |        |        |        | CH 8      | Yes                |            |             | Yes         |
-| 5925     |        |        | CH 7   |        |           | Yes                |            |             | Yes         |
-| 5945     |        |        | CH 8   |        |           | Yes                |            |             |             |
+| Freqency | Band A | Band B | Band E | Band F | Race Band | HAM license needed | Alpha 110q | FT951  | Dji Goggles |
+|:--------:|:------:|:------:|:------:|:------:|:---------:|:------------------:|:----------:|:------:|:-----------:|
+| 5362     |        |        |        |        |           | Yes                |            |        |             |
+| 5399     |        |        |        |        |           | Yes                |            |        |             |
+| 5436     |        |        |        |        |           | Yes                |            |        |             |
+| 5473     |        |        |        |        |           | Yes                |            |        |             |
+| 5510     |        |        |        |        |           | Yes                |            |        |             |
+| 5547     |        |        |        |        |           | Yes                |            |        |             |
+| 5584     |        |        |        |        |           | Yes                |            |        |             |
+| 5621     |        |        |        |        |           | Yes                |            |        | Yes         |
+| 5645     |        |        | CH 4   |        |           | Yes                |            |        | Yes         |
+| 5658     |        |        |        |        | CH 1      | Yes                |            |        | Yes         |
+| 5665     |        |        | CH 3   |        |           | Yes                |            |        | Yes         |
+| 5685     |        |        | CH 2   |        |           | Yes                |            |        | Yes         |
+| 5695     |        |        |        |        | CH 2      | Yes                |            |        | Yes         |
+| 5705     |        |        | CH 1   |        |           | Yes                |            |        | Yes         |
+| 5725     | CH 8   |        |        |        |           | Yes                |            |        | Yes         |
+| 5732     |        |        |        |        | CH 3      | Yes                |            |        | Yes         |
+| 5733     |        | CH 1   |        |        |           |                    |            | B CH 1 | Yes         |
+| 5740     |        |        |        | CH 1   |           |                    | CH 1       | D CH 1 | Yes         |
+| 5745     | CH 7   |        |        |        |           |                    |            | A CH 7 | Yes         |
+| 5752     |        | CH 2   |        |        |           |                    |            | B CH 2 | Yes         |
+| 5760     |        |        |        | CH 2   |           |                    |            | D CH 2 | Yes         |
+| 5765     | CH 6   |        |        |        |           |                    |            | A CH 6 | Yes         |
+| 5769     |        |        |        |        | CH 4      |                    |            |        | Yes         |
+| 5771     |        | CH 3   |        |        |           |                    |            | B CH 3 | Yes         |
+| 5780     |        |        |        | CH 3   |           |                    | CH 3       | D CH 3 | Yes         |
+| 5785     | CH 5   |        |        |        |           |                    |            | A CH 5 | Yes         |
+| 5790     |        | CH 4   |        |        |           |                    |            | B CH 4 | Yes         |
+| 5800     |        |        |        | CH 4   |           |                    |            | D CH 4 | Yes         |
+| 5805     | CH 4   |        |        |        |           |                    |            | A CH 4 | Yes         |
+| 5806     |        |        |        |        | CH 5      |                    |            |        | Yes         |
+| 5809     |        | CH 5   |        |        |           |                    |            | B CH 5 | Yes         |
+| 5820     |        |        |        | CH 5   |           |                    | CH 5       | D CH 5 | Yes         |
+| 5825     | CH 3   |        |        |        |           |                    |            | A CH 3 | Yes         |
+| 5828     |        | CH 6   |        |        |           |                    |            | B CH 6 | Yes         |
+| 5840     |        |        |        | CH 6   |           |                    |            | D CH 6 | Yes         |
+| 5843     |        |        |        |        | CH 6      |                    |            |        | Yes         |
+| 5845     | CH 2   |        |        |        |           |                    |            | A CH 2 | Yes         |
+| 5847     |        | CH 7   |        |        |           |                    |            | B CH 7 | Yes         |
+| 5860     |        |        |        | CH 7   |           |                    | CH 7       | D CH 7 | Yes         |
+| 5865     | CH 1   |        |        |        |           |                    |            | A CH 1 | Yes         |
+| 5866     |        | CH 8   |        |        |           |                    |            | B CH 8 | Yes         |
+| 5880     |        |        |        | CH 8   | CH 7      | Yes                |            |        | Yes         |
+| 5885     |        |        | CH 5   |        |           | Yes                |            |        | Yes         |
+| 5905     |        |        | CH 6   |        |           | Yes                |            |        | Yes         |
+| 5917     |        |        |        |        | CH 8      | Yes                |            |        | Yes         |
+| 5925     |        |        | CH 7   |        |           | Yes                |            |        | Yes         |
+| 5945     |        |        | CH 8   |        |           | Yes                |            |        |             |
 
 ## Transmitters
 
