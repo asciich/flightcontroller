@@ -1,5 +1,5 @@
 # FPV Receiver
 
-## Googles
+## Goggles
 
-* [Dji Googles](dji_googles.md)
+* [Dji Goggles](dji_Goggles.md)
