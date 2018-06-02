@@ -1,6 +1,6 @@
 # Graupner 5.8GHz AV Transmitter S8460
 
-[]Pictures of this Transmitter](https://asciich.ch/wordpress/graupner-5-8ghz-video-transmitter-einstellungen/)
+[Pictures of this Transmitter](https://asciich.ch/wordpress/graupner-5-8ghz-video-transmitter-einstellungen/)
 
 ## Channel list
 
