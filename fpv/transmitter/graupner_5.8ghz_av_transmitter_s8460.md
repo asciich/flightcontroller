@@ -21,7 +21,7 @@ Frequencies in MHz
 | Band A | 5       | ON  | OFF | OFF | OFF | ON  | ON  |                              |
 | Band A | 6       | ON  | OFF | ON  | OFF | ON  | ON  |                              |
 | Band A | 7       | ON  | ON  | OFF | OFF | ON  | ON  |                              |
-| Band A | 8       | ON  | ON  | ON  | OFF | ON  | ON  |                              |
+| Band A | 8       | ON  | ON  | ON  | OFF | ON  | ON  | Same frequency as A7         |
 | Band B | 1       | X   | X   | X   | X   | X   | X   | I have no receiver to verify |
 | Band B | 2       | X   | X   | X   | X   | X   | X   | I have no receiver to verify |
 | Band B | 3       | X   | X   | X   | X   | X   | X   | I have no receiver to verify |
@@ -37,7 +37,7 @@ Frequencies in MHz
 | Band F | 5       | ON  | OFF | ON  | ON  | ON  | ON  |                              |
 | Band F | 6       | ON  | ON  | OFF | ON  | ON  | ON  |                              |
 | Band F | 7       | ON  | ON  | ON  | ON  | ON  | ON  |                              |
-| Band F | 8       | ON  | ON  | OFF | ON  | ON  | ON  | Same Frequency as F7         |
+| Band F | 8       | ON  | ON  | OFF | ON  | ON  | ON  | Same frequency as F7         |
 
 ## Additional information
 
