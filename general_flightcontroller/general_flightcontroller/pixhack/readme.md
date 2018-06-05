@@ -2,7 +2,7 @@
 
 ## Output Channel mapping
 
-The following list shows how to map the Pixhack output channels to the original Pixhawk output channels:
+The following list shows how to map the Pixhack output channels to the ArduPilot output channels:
 
 ```
 S1  <-> RC1
