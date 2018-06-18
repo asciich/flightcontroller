@@ -2,8 +2,8 @@
 
 ## Settings
 
-* [Flightcontroller settings](graupner_alpha_110q_q4_default_settings.md)
-* [MZ-12 Settings](graupner_alpha_110q_mz-12_settings.md)
+* [Flightcontroller settings](settings/graupner_alpha_110q_q4_default_settings.md)
+* [MZ-12 Settings](settings/graupner_alpha_110q_mz-12_settings.md)
 
 ## More information
 
