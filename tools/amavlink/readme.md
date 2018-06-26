@@ -2,10 +2,11 @@
 
 Simple tool to communicate with vehicles using MAVLink.
 
-* [Release Notes](release_notes.txt)
+* [Release Notes](release_notes.md)
 
-*IMPORTANT: Very early development state*
-*IMPORTANT: Currently only available for Python2 since pymavlink does not support Python3*
+**IMPORTANT: Very early development state**
+
+**IMPORTANT: Currently only available for Python2 since pymavlink does not support Python3**
 
 ## Installation
 
