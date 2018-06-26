@@ -10,7 +10,11 @@ Simple tool to communicate with vehicles using MAVLink.
 
 ## Installation
 
-TODO
+The install with pip:
+
+```bash
+pip install git+https://github.com/asciich/flightcontroller.git/#subdirectory=tools/amavlink
+```
 
 ## Test AMavlink
 
