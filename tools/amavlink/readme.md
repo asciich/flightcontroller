@@ -8,13 +8,34 @@ Simple tool to communicate with vehicles using MAVLink.
 
 **IMPORTANT: Currently only available for Python2 since pymavlink does not support Python3**
 
-## Installation
+## Usage
 
-The install with pip:
+Get single parameter (CH7_OPT):
+```bash
+docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink param --get CH7_OPT"
+```
+
+Set single parameter (CH7_OPT to 8):
+```bash
+docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink param --set CH7_OPT 8
+```
+
+Upload parameters from PARAM.FILE:
 
 ```bash
-pip install git+https://github.com/asciich/flightcontroller.git/#subdirectory=tools/amavlink
+docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --upload /params/PARAM.FILE
 ```
+
+Verify parameters from PARAM.FILE:
+
+```bash
+docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --verify /params/PARAM.FILE
+```
+
+## Installation
+
+It is recomended to use the [asciich/amavlink](https://hub.docker.com/r/asciich/amavlink/) docker container to run amavlink.
+For local installation see [Installation with pip](installation_pip.md).
 
 ## Test AMavlink
 
