@@ -3,6 +3,10 @@
 This repository contains configuration tools and settings for RC flight controller used for projects shown on my personal blog
 [asciich.ch](https://asciich.ch/)
 
+## Tools
+
+* [AMavlink](tools/amavlink/): MAVLink communication CLI
+
 ## Models
 
 * [Acopter01](quadrocopter/cc3d/acopter01/settings)
