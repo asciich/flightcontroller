@@ -19,6 +19,7 @@ class TestAMavlinkParam(object):
         ('CH7_OPT', 9),
         (b'CH7_OPT', 8),
         ('CH7_OPT', '7'),
+        ('RC11_REVERSED' ,0),
     ])
     def test_set_and_get_param(self, amavlink, param_name, param_value):
         amavlink.param.set(param_name, param_value)
