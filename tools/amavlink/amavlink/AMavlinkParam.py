@@ -15,17 +15,12 @@ class AMavlinkParam(AMavlinkDefaultObject):
         self._amavlink.heartbeat.wait_if_target_unknown()
         if isinstance(param_name, str):
             param_name = param_name.encode()
-        mavutil = self._amavlink.get_mavutil()
-        self._amavlink.message.clear_recv_buffer()
-        for i in range(self.retries):
-            mavutil.param_fetch_one(param_name)
-            param_message = self._amavlink.message.get(type='PARAM_VALUE', blocking=True)
-            if param_message is not None:
+
+        # On receiving erros often 140.0 is returned as value
+        for i in range(2):
+            param_value = self._get_param_value(param_name)
+            if float(param_value) != 140.0:
                 break
-            time.sleep(self.retry_delay)
-        if param_message is None:
-            raise AMavlinkParamNotReceiveError('param name: {}'.format(param_name))
-        param_value = param_message.param_value
         return param_value
 
     def set(self, param_name, param_value):
@@ -62,3 +57,18 @@ class AMavlinkParam(AMavlinkDefaultObject):
     def compare_values_equal(self, value, expected_value):
         if isinstance(value, float):
             return value == float(expected_value)
+        else:
+            raise Exception('Unknown type for comparison')
+
+    def _get_param_value(self, param_name):
+        mavutil = self._amavlink.get_mavutil()
+        self._amavlink.message.clear_recv_buffer()
+        for i in range(self.retries):
+            mavutil.param_fetch_one(param_name)
+            param_message = self._amavlink.message.get(type='PARAM_VALUE', blocking=True)
+            if param_message is not None:
+                break
+            time.sleep(self.retry_delay)
+        if param_message is None:
+            raise AMavlinkParamNotReceiveError('param name: {}'.format(param_name))
+        return param_message.param_value
