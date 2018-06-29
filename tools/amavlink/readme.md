@@ -8,7 +8,22 @@ Simple tool to communicate with vehicles using MAVLink.
 
 **IMPORTANT: Currently only available for Python2 since pymavlink does not support Python3**
 
+## Connect to flightcontroller/ vehicle
+
+AMavlink expects a with UDP-Port 14551 open on the same machine and **only one flightcontroller** connected.
+[Mavproxy is also available as docker container for this purpose](https://hub.docker.com/r/asciich/mavproxy/)
+
 ## Usage
+
+### EEPROM
+
+Reset EEPROM:
+
+**IMPORTANT: ALL SETTINGS ARE RESETED TO DEFAULT VALUES ON THE FLIGHTCONTROLLER**
+
+```bash
+docker run --net=host --rm -it asciich/amavlink sh -c "amavlink eeprom --reset-default-values"
+```
 
 ### Parameter files
 
