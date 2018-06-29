@@ -16,10 +16,13 @@ class AMavlinkParam(AMavlinkDefaultObject):
         if isinstance(param_name, str):
             param_name = param_name.encode()
 
-        # On receiving erros often 140.0 is returned as value
-        for i in range(2):
+        # Read twice to prevent readout error
+        for i in range(3):
             param_value = self._get_param_value(param_name)
-            if float(param_value) != 140.0:
+            param_value2 = self._get_param_value(param_name)
+            if param_value != param_value2:
+                time.sleep(self.retry_delay)
+            else:
                 break
         return param_value
 
