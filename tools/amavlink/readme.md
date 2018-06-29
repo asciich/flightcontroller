@@ -17,13 +17,7 @@ AMavlink expects a with UDP-Port 14551 open on the same machine and **only one f
 
 ### EEPROM
 
-Reset EEPROM:
-
-**IMPORTANT: ALL SETTINGS ARE RESETED TO DEFAULT VALUES ON THE FLIGHTCONTROLLER**
-
-```bash
-docker run --net=host --rm -it asciich/amavlink sh -c "amavlink eeprom --reset-default-values"
-```
+* [Reset EEPROM to default values](docs/reset_eeprom_to_default_values.md)
 
 ### Parameter files
 
