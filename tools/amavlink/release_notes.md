@@ -2,6 +2,7 @@
 
 ## v 0.02
 
+* Clear EEPROM added to CLI.
 * Support for markdown files as param.file.
 
 ## V 0.01
