@@ -20,10 +20,6 @@ class TestAMavLink():
         # TODO enable: assert amavlink.arm_state == 'ARMED'
         # TODO enable: assert amavlink.disarm_state == 'DISARMED'
 
-    def test_no_command_specified_error(self, amavlink):
-        with pytest.raises(ErrorAMavlinkNoCommandSpecified):
-            amavlink.command.send_long()
-
     def test_reconnect(self, amavlink):
         amavlink.heartbeat.wait()
         assert amavlink.target_id != 0

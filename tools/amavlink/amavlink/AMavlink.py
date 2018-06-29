@@ -4,6 +4,7 @@ from pymavlink import mavutil
 
 from AMAvlinkEeprom import AMavlinkEeprom
 from AMavlinkCommand import AMavlinkCommand
+from AMavlinkDefaultObject import AMavlinkDefaultObject
 from AMavlinkFlightmode import AMavlinkFlightmode
 from AMavlinkHeartbeat import AMavlinkHeartbeat
 from AMavlinkLocation import AMavlinkLocation
@@ -12,9 +13,10 @@ from AMavlinkParam import AMavlinkParam
 from AMavlinkSystem import AMavlinkSystem
 
 
-class AMavlink():
+class AMavlink(AMavlinkDefaultObject):
 
     def __init__(self, port=None):
+        super(AMavlink, self).__init__()
         mavutil.set_dialect('ardupilotmega')
         if port is None:
             self._port = 14551
