@@ -22,13 +22,13 @@ Set single parameter (CH7_OPT to 8):
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink param --set CH7_OPT 8
 ```
 
-Upload parameters from PARAM.FILE:
+Upload parameters from [PARAM.FILE](doc/param_file.md):
 
 ```bash
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --upload /params/PARAM.FILE
 ```
 
-Verify parameters from PARAM.FILE:
+Verify parameters from [PARAM.FILE](doc/param_file.md):
 
 ```bash
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --verify /params/PARAM.FILE
