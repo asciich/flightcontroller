@@ -15,4 +15,3 @@ class TestAMAvlinkCommand():
         amavlink.command.preflight_storage_read_params_from_flash()
 
         assert param_value == amavlink.param.get(param_name)
-

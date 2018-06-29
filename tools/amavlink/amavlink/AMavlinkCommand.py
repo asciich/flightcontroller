@@ -7,14 +7,14 @@ class AMavlinkCommand():
         self._amavlink = amavlink
 
     def send_long(self, autopilot_system_id=None, autopilot_component_id=None, command_id=None, cofirmation=1,
-             param1=0,
-             param2=0,
-             param3=0,
-             param4=0,
-             param5=0,
-             param6=0,
-             param7=0
-         ):
+                  param1=0,
+                  param2=0,
+                  param3=0,
+                  param4=0,
+                  param5=0,
+                  param6=0,
+                  param7=0
+                  ):
         self._amavlink.heartbeat.wait_if_target_unknown()
         if command_id is None:
             raise ErrorAMavlinkNoCommandSpecified()
@@ -38,14 +38,14 @@ class AMavlinkCommand():
         )
 
     def arm(self):
-        self.send_long(command_id=400, param1=1) # TODO use enum for command id
+        self.send_long(command_id=400, param1=1)  # TODO use enum for command id
         mavutil = self._amavlink.get_mavutil()
         ack_message = mavutil.recv_match('ACTION_ACK', blocking=True, timeout=10)
         if ack_message is None:
             raise ErrorAMavCommandACKNotReceived()
 
     def disarm(self):
-        self.send_long(command_id=400, param1=0) # TODO use enum for command id
+        self.send_long(command_id=400, param1=0)  # TODO use enum for command id
 
     def preflight_storage_read_params_from_flash(self):
         self.send_long(command_id=245, param1=1)

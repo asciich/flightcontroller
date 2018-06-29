@@ -28,7 +28,7 @@ class TestAMavlinkMessages(object):
         t_start = time.time()
         amavlink.message.get(type=type, timeout=timeout, blocking=True)
         elapsed_time = time.time() - t_start
-        assert timeout * (1.0-relative_error_allowed) <= elapsed_time <= timeout * (1.0 + relative_error_allowed)
+        assert timeout * (1.0 - relative_error_allowed) <= elapsed_time <= timeout * (1.0 + relative_error_allowed)
 
     def test_get_arbitrary_message(self, amavlink, arducopter_sitl):
         message_received = False
@@ -64,4 +64,3 @@ class TestAMavlinkMessages(object):
         message = amavlink.message.get_system_time()
         assert 0 < message.time_unix_usec
         assert 0 < message.time_boot_ms
-

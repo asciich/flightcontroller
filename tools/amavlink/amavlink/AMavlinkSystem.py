@@ -29,4 +29,3 @@ class AMavlinkSystem(AMavlinkDefaultObject):
                 return
             time.sleep(1)
         raise AMavlinkBootNotFinishedError()
-

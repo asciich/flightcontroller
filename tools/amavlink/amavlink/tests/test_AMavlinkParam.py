@@ -15,11 +15,11 @@ class TestAMavlinkParam(object):
             f.write('CH8_OPT=12\n')
         return path
 
-    @pytest.mark.parametrize('param_name,param_value',[
+    @pytest.mark.parametrize('param_name,param_value', [
         ('CH7_OPT', 9),
         (b'CH7_OPT', 8),
         ('CH7_OPT', '7'),
-        ('RC11_REVERSED' ,0),
+        ('RC11_REVERSED', 0),
     ])
     def test_set_and_get_param(self, amavlink, param_name, param_value):
         amavlink.param.set(param_name, param_value)
@@ -53,4 +53,3 @@ class TestAMavlinkParam(object):
     def test_verify_param_from_file(self, amavlink, param_file):
         amavlink.param.set_from_file(path=param_file)
         amavlink.param.verify_from_file(path=param_file)
-
