@@ -4,6 +4,7 @@ from AMavlinkDefaultObject import AMavlinkDefaultObject
 from AMavlinkErrors import AMavlinkParamVerificationError, AMavlinkParamNotReceiveError, AMavlinkParamSetError
 from AMavlinkPramFile import AMavlinkParamFile
 
+
 class AMavlinkParam(AMavlinkDefaultObject):
 
     def __init__(self, amavlink):
@@ -35,7 +36,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
         param_value = float(param_value)
         for i in range(self.retries):
             mavutil.mav.param_set_send(self._amavlink.heartbeat.system_id, self._amavlink.heartbeat.component_id,
-                                             param_name, param_value, 0)
+                                       param_name, param_value, 0)
             read_value = self.get(param_name)
             if self.compare_values_equal(read_value, param_value):
                 return

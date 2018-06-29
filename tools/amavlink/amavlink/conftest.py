@@ -1,14 +1,15 @@
-import pytest
-import time
-
 import os
 import sys
+import time
+
+import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from AMavlink import AMavlink
 from AMavlinkEnums import AMavlinkEnums
 import docker
+
 
 class SitlContainer(object):
 
@@ -46,17 +47,20 @@ class SitlContainer(object):
             else:
                 time.sleep(0.1)
 
+
 @pytest.fixture(scope='session')
 def arducopter_sitl():
     sitl_container = SitlContainer('sim_arducopter')
     yield sitl_container
     sitl_container.kill()
 
+
 @pytest.fixture
 def amavlink():
     mavlink = AMavlink(port=14550)
     yield mavlink
     mavlink.close()
+
 
 @pytest.fixture
 def enums():

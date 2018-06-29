@@ -1,5 +1,3 @@
-import time
-
 from AMavlinkDefaultObject import AMavlinkDefaultObject
 from AMavlinkErrors import AMavlinkHeartbeatNotReceivedError
 
@@ -10,7 +8,6 @@ class AMavlinkHeartbeat(AMavlinkDefaultObject):
         self._amavlink = amavlink
         self._system_id = None
         self._component_id = None
-
 
     @property
     def component_id(self):

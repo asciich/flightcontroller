@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.mark.skip(msg='TODO implement')
 class TestAMavlinkLocation(object):
 

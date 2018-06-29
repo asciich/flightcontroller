@@ -10,6 +10,8 @@ Simple tool to communicate with vehicles using MAVLink.
 
 ## Usage
 
+### Parameter files
+
 Get single parameter (CH7_OPT):
 ```bash
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink param --get CH7_OPT"
@@ -35,7 +37,7 @@ docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlin
 ## Installation
 
 It is recomended to use the [asciich/amavlink](https://hub.docker.com/r/asciich/amavlink/) docker container to run amavlink.
-For local installation see [Installation with pip](installation_pip.md).
+For local installation see [Installation with pip](doc/installation_pip.md).
 
 ## Test AMavlink
 

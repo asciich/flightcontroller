@@ -1,14 +1,12 @@
-import os
 import pytest
-import sys
 
 from AMavlinkErrors import ErrorAMavlinkNoCommandSpecified
 
 
+@pytest.mark.usefixtures("arducopter_sitl")
 class TestAMavLink():
 
-
-    def test_connection(self, amavlink, arducopter_sitl):
+    def test_connection(self, amavlink):
         assert amavlink.is_connected
 
     def test_set_flight_mode_manual(self, amavlink):
@@ -21,7 +19,6 @@ class TestAMavLink():
         amavlink.command.disarm()
         # TODO enable: assert amavlink.arm_state == 'ARMED'
         # TODO enable: assert amavlink.disarm_state == 'DISARMED'
-
 
     def test_no_command_specified_error(self, amavlink):
         with pytest.raises(ErrorAMavlinkNoCommandSpecified):

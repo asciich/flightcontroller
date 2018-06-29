@@ -1,7 +1,6 @@
 #!/usr/bin/env python2
 
 import argparse
-
 import sys
 
 from AMavlink import AMavlink
@@ -18,9 +17,12 @@ class AMavlinkCLI(object):
         parser = argparse.ArgumentParser(description='AMavlink CLI for Mavlink communication.')
         subparsers = parser.add_subparsers(help='Main commands')
 
+        eeprom_parser = subparsers.add_parser('eeprom', help='Handle eeprom')
+        eeprom_parser.add_argument('--reset-default-values', action='store_true', help='Reset flightcontroller EEPROM')
+
         param_parser = subparsers.add_parser('param', help='Manipulate parameters')
         param_parser.add_argument('--get', help='Get a parameter value')
-        param_parser.add_argument('--set', nargs=2,help='Set a parameter. Syntax: "--set PARAM_NAME VALUE"')
+        param_parser.add_argument('--set', nargs=2, help='Set a parameter. Syntax: "--set PARAM_NAME VALUE"')
 
         paramfile_parser = subparsers.add_parser('paramfile', help='Handle param files')
         paramfile_parser.add_argument('--upload', nargs='+', help='Upload all parameters in a file')
@@ -36,8 +38,19 @@ class AMavlinkCLI(object):
             self._run_param(args)
         elif argv[0] == 'paramfile':
             return self._run_paramfile(args)
+        elif argv[0] == 'eeprom':
+            return self._run_eeprom(args)
         else:
             AMavlinkCLIParseError()
+        return 0
+
+    def _run_eeprom(self, args):
+        if args.reset_default_values:
+            self._amavlink.eeprom.prepare_reset_to_default_parameters()
+            print('Flightcontroller prepared for resetting EEPROM')
+            print('Reboot Flightcontroller to reset EEPROM')
+        else:
+            raise AMavlinkCLIParseError()
         return 0
 
     def _run_param(self, args):
@@ -93,9 +106,11 @@ class AMavlinkCLI(object):
         self._amavlink.param.set(param_name, param_value)
         print('Set param "{}" = {}'.format(param_name, param_value))
 
+
 def main():
     amavlink_cli = AMavlinkCLI()
     exit(amavlink_cli.main(sys.argv[1:]))
+
 
 if __name__ == '__main__':
     main()

@@ -14,5 +14,4 @@ class TestAMavlinkSystem(object):
         uptime_elapsed = amavlink.system.uptime() - t_uptime_start
         time_elapsed = time.time() - t_start
         allowed_error = 0.07
-        assert time_elapsed * (1-allowed_error) <= uptime_elapsed <= time_elapsed * (1+allowed_error)
-
+        assert time_elapsed * (1 - allowed_error) <= uptime_elapsed <= time_elapsed * (1 + allowed_error)

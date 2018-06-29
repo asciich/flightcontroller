@@ -1,8 +1,9 @@
 import time
+
 from pymavlink import mavutil
 
+from AMAvlinkEeprom import AMavlinkEeprom
 from AMavlinkCommand import AMavlinkCommand
-from AMavlinkErrors import ErrorAMavlinkNotConnected
 from AMavlinkFlightmode import AMavlinkFlightmode
 from AMavlinkHeartbeat import AMavlinkHeartbeat
 from AMavlinkLocation import AMavlinkLocation
@@ -23,6 +24,7 @@ class AMavlink():
         self._mavutil = None
         self._connect()
         self.command = AMavlinkCommand(self)
+        self.eeprom = AMavlinkEeprom(self)
         self.flightmode = AMavlinkFlightmode(self)
         self.heartbeat = AMavlinkHeartbeat(self)
         self.location = AMavlinkLocation(self)

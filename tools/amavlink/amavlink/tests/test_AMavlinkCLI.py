@@ -83,7 +83,6 @@ class TestAMavlinkCLI(object):
         expected_text.extend(params)
         self._assert_text_in_output(capsys, expected_text)
 
-
     @pytest.mark.xfail(reson='TODO implement')
     def test_upload_and_verify_params_from_file(self, amavlink, mavlink_cli, tmpdir, capsys):
         assert False
@@ -131,3 +130,13 @@ class TestAMavlinkCLI(object):
     def test_verify_params_from_multible_files_fails(self, mavlink_cli):
         assert False
 
+    def test_reset_eeprom(self, amavlink, mavlink_cli, capsys):
+
+        assert 0 == mavlink_cli.main(['eeprom', '--reset-default-values'])
+
+        expected_text = [
+            'Flightcontroller prepared for resetting EEPROM',
+            'Reboot Flightcontroller to reset EEPROM'
+        ]
+        self._assert_text_in_output(capsys, expected_stdout=expected_text)
+        assert 0 == amavlink.param.get('SYSID_SW_MREV')

@@ -1,3 +1,4 @@
+import os
 import pytest
 
 from AMavlinkPramFile import AMavlinkParamFile
@@ -22,7 +23,7 @@ class TestAMavlinkParamFile(object):
                 f.write(line)
         return path
 
-    def test_read_param_file(self,param_file_equal_separated):
+    def test_read_param_file(self, param_file_equal_separated):
         param_file = AMavlinkParamFile(param_file_equal_separated)
         param_file.read()
         assert 2 == len(param_file)
@@ -35,8 +36,12 @@ class TestAMavlinkParamFile(object):
         '= ',
         ' = ',
         '  =  ',
+        ',',
+        ' , ',
+        ':',
+        '          :    ',
     ])
-    def test_read_param_file_with_spaces(self, delimiter, tmpdir):
+    def test_read_param_file_delimiter(self, delimiter, tmpdir):
         param_path = tmpdir.mkdir('param_files').join('file.param').strpath
         with open(param_path, 'w') as f:
             f.write('CH7_OPT{}8'.format(delimiter))
@@ -79,9 +84,24 @@ class TestAMavlinkParamFile(object):
         assert '8' == param_file['CH8_OPT']
         assert '9' == param_file['CH9_OPT']
         assert '10' == param_file['CH10_OPT']
+        assert 4 == len(param_file)
 
     def test_is_iterable(self, param_file_equal_separated):
         param_file = AMavlinkParamFile(param_file_equal_separated)
         param_file.read()
         for param_name in param_file:
             assert param_name in ['CH7_OPT', 'CH8_OPT']
+
+    def test_read_markdown_file(self):
+        test_path = os.path.join(os.path.dirname(__file__))
+        markdown_path = os.path.join(test_path, '..', '..', 'doc', 'param_file.md')
+        markdown_path = os.path.abspath(markdown_path)
+        assert os.path.exists(markdown_path)
+
+        param_file = AMavlinkParamFile(markdown_path)
+        param_file.read()
+
+        assert '7' == param_file['CH7_OPT']
+        assert '8' == param_file['CH8_OPT']
+        assert '0' == param_file['RC11_DZ']
+        assert 3 == len(param_file)

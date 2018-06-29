@@ -33,7 +33,7 @@ class AMavlinkMessage(AMavlinkDefaultObject):
         if no_recv_buffer:
             self.clear_recv_buffer()
         return self._get_blocking_type(type='SYSTEM_TIME')
-    
+
     def get_str_match(self, search_str, blocking=False, timeout=0):
         t_start = time.time()
         while True:
@@ -76,8 +76,3 @@ class AMavlinkMessage(AMavlinkDefaultObject):
                     raise AMavlinkMessageNotReceivedError()
                 else:
                     self._sleep_if_timeout_not_expired(t_start, timeout)
-
-
-
-
-    
