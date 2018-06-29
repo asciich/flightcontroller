@@ -4,16 +4,20 @@ import pytest
 
 from AMavlinkErrors import AMavlinkMessageNotReceivedError
 
-
+@pytest.mark.usefixtures("arducopter_sitl")
 class TestAMavlinkMessages(object):
 
     @pytest.fixture
     def test_timeout(self):
         return 5
 
-    def test_clear_recv_buffer(self, amavlink):
+    def test_clear_recv_buffer(self, amavlink, is_python3):
+        if is_python3:
+            expected_error_object = AMavlinkMessageNotReceivedError
+        else:
+            expected_error_object = Exception
         amavlink.message.clear_recv_buffer()
-        with pytest.raises(AMavlinkMessageNotReceivedError):
+        with pytest.raises(expected_error_object):
             amavlink.message.get()
 
     @pytest.mark.xfail(reason='TODO implement')
@@ -32,18 +36,21 @@ class TestAMavlinkMessages(object):
 
     def test_get_arbitrary_message(self, amavlink, arducopter_sitl):
         message_received = False
+        expected_error_object = AMavlinkMessageNotReceivedError
+        if not amavlink.is_python3:
+            expected_error_object = Exception
         for i in range(20):
             try:
                 if amavlink.message.get() is not None:
                     message_received = True
                     break
-            except AMavlinkMessageNotReceivedError:
+            except expected_error_object:
                 pass
             time.sleep(0.1)
         assert amavlink.target_id != 0
         assert message_received
 
-    def test_get_message_by_type(self, amavlink, test_timeout, arducopter_sitl):
+    def test_get_message_by_type(self, amavlink, test_timeout):
         message = amavlink.message.get(type='SYSTEM_TIME', blocking=True, timeout=test_timeout)
         assert 0 < message.time_unix_usec
         assert 0 < message.time_boot_ms
@@ -56,7 +63,7 @@ class TestAMavlinkMessages(object):
         'MISSION_CURRENT',
         'GPS_RAW_INT',
     ])
-    def test_get_message_by_string_match(self, amavlink, search_str, test_timeout, arducopter_sitl):
+    def test_get_message_by_string_match(self, amavlink, search_str, test_timeout):
         message = amavlink.message.get_str_match(search_str=search_str, blocking=True, timeout=test_timeout)
         assert search_str == message.get_type()
 

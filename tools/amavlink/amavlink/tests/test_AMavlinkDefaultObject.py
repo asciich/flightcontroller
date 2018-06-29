@@ -1,4 +1,5 @@
 import pytest
+import sys
 
 from AMavlinkDefaultObject import AMavlinkDefaultObject
 from AMavlinkEnums import AMavlinkEnums
@@ -21,3 +22,10 @@ class TestAMavlinkDefaultObject(object):
 
     def test_enums_available(self, amavlink_default_object):
         assert isinstance(amavlink_default_object._enums, AMavlinkEnums)
+
+    def test_is_python3(self, amavlink_default_object):
+        python_major_version = sys.version_info.major
+        if python_major_version == 3:
+            assert amavlink_default_object.is_python3
+        if python_major_version == 2:
+            assert not amavlink_default_object.is_python3

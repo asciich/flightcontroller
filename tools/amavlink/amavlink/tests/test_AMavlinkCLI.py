@@ -113,6 +113,7 @@ class TestAMavlinkCLI(object):
         self._assert_text_in_output(capsys, expected_stdout=expected_texts)
 
     def test_verify_params_from_file_fails(self, amavlink, mavlink_cli, capsys, param_channels_file):
+        amavlink.param.set('CH7_OPT', 7)
         amavlink.param.set('CH8_OPT', 7)
 
         assert 1 == mavlink_cli.main(['paramfile', '--verify', param_channels_file])

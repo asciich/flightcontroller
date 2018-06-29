@@ -38,7 +38,7 @@ class SitlContainer(object):
         self._wait_ready()
 
     def logs(self):
-        return self._container.logs()
+        return self._container.logs().decode()
 
     def _wait_ready(self):
         for i in range(1000):
@@ -54,6 +54,12 @@ def arducopter_sitl():
     yield sitl_container
     sitl_container.kill()
 
+@pytest.fixture
+def is_python3():
+    if sys.version_info.major == 3:
+        return True
+    else:
+        return False
 
 @pytest.fixture
 def amavlink():

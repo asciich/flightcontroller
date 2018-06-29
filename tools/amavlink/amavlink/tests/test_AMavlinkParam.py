@@ -36,7 +36,13 @@ class TestAMavlinkParam(object):
         amavlink.param.set_from_file(path=param_file)
         assert amavlink.param.verify_from_file(path=param_file)
 
-    def test_set_param_from_file_fails(self, amavlink, tmpdir):
+    def test_set_param_from_file_fails(self, amavlink, tmpdir, is_python3):
+
+        if is_python3:
+            expected_error_object = AMavlinkParamVerificationError
+        else:
+            expected_error_object = Exception
+
         p = tmpdir.mkdir('param_files').join('set_param_from_file_fails.param')
         path = p.strpath
         with open(path, 'w') as f:
@@ -47,7 +53,7 @@ class TestAMavlinkParam(object):
         with open(path, 'w') as f:
             f.write('CH7_OPT=13\n')
             f.write('CH8_OPT=2\n')
-        with pytest.raises(AMavlinkParamVerificationError):
+        with pytest.raises(expected_error_object):
             amavlink.param.verify_from_file(path=path)
 
     def test_verify_param_from_file(self, amavlink, param_file):
