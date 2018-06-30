@@ -16,15 +16,16 @@ class AMavlinkParam(AMavlinkDefaultObject):
         if isinstance(param_name, str):
             param_name = param_name.encode()
 
-        # Read twice to prevent readout error
+        # Read several times to prevent readout errors:
+        param_value = self._get_param_value(param_name)
         for i in range(3):
-            param_value = self._get_param_value(param_name)
             param_value2 = self._get_param_value(param_name)
             if param_value != param_value2:
+                param_value = param_value2
                 time.sleep(self.retry_delay)
             else:
-                break
-        return param_value
+                return param_value
+        raise AMavlinkParamNotReceiveError()
 
     def set(self, param_name, param_value):
         self._amavlink.heartbeat.wait_if_target_unknown()
