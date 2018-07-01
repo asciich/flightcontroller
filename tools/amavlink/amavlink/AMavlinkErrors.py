@@ -44,3 +44,6 @@ class AMavlinkCLIParseError(AMavLinkError):
 
 class AMavlinkParamFileDelimiterNotFoundInLineError(AMavLinkError):
     pass
+
+class AMavlinClearRecvBufferError(AMavLinkError):
+    pass

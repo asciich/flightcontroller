@@ -8,22 +8,25 @@ from AMavlinkPramFile import AMavlinkParamFile
 class AMavlinkParam(AMavlinkDefaultObject):
 
     def __init__(self, amavlink):
-        super(AMavlinkParam, self).__init__()
+        super(AMavlinkParam, self).__init__(amavlink)
         self._amavlink = amavlink
 
     def get(self, param_name):
         self._amavlink.heartbeat.wait_if_target_unknown()
         if isinstance(param_name, str):
             param_name = param_name.encode()
+        self.logger.info('Get param "{}" requested'.format(param_name))
 
         # Read several times to prevent readout errors:
         param_value = self._get_param_value(param_name)
         for i in range(3):
             param_value2 = self._get_param_value(param_name)
             if param_value != param_value2:
+                self.logger.debug('Get param "{}" missmatch: "{}" != "{}", retry readout'.format(param_name, param_value, param_value2))
                 param_value = param_value2
                 time.sleep(self.retry_delay)
             else:
+                self.logger.info('Get param "{}" == {}'.format(param_name, param_value))
                 return param_value
         raise AMavlinkParamNotReceiveError()
 
