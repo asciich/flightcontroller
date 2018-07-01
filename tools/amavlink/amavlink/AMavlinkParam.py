@@ -72,7 +72,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
         self._amavlink.message.clear_recv_buffer()
         for i in range(self.retries):
             mavutil.param_fetch_one(param_name)
-            param_message = self._amavlink.message.get(type='PARAM_VALUE', blocking=True)
+            param_message = self._amavlink.message.get(strmatch=param_name, blocking=True)
             if param_message is not None:
                 break
             time.sleep(self.retry_delay)

@@ -21,7 +21,7 @@ class AMavlinkMessage(AMavlinkDefaultObject):
                 return
         raise AMavlinClearRecvBufferError()
 
-    def get(self, type=None, timeout=None, blocking=None):
+    def get(self, type=None, strmatch=None, timeout=None, blocking=None):
         self._amavlink.heartbeat.wait_if_target_unknown()
         mavutil = self._amavlink.get_mavutil()
         if timeout is None:
@@ -31,6 +31,12 @@ class AMavlinkMessage(AMavlinkDefaultObject):
             message =  mavutil.recv_match(type=type, blocking=blocking, timeout=timeout)
             self._log_debug('Received message by type=="{}" : {}'.format(type, message))
             return message
+        elif strmatch is not None:
+            for i in range(1000):
+                message = self._recv_msg(timeout=timeout, blocking=blocking)
+                if strmatch in str(message):
+                    return message
+            raise AMavlinkMessageNotReceivedError()
         else:
             message = self._recv_msg(timeout=timeout, blocking=blocking)
             return message
