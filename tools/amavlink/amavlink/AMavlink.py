@@ -15,8 +15,9 @@ from AMavlinkSystem import AMavlinkSystem
 
 class AMavlink(AMavlinkDefaultObject):
 
-    def __init__(self, port=None):
+    def __init__(self, port=None, debug_log_to_console=False):
         super(AMavlink, self).__init__()
+        self._initialize_logger(debug_log_to_console)
         mavutil.set_dialect('ardupilotmega')
         if port is None:
             self._port = 14551
@@ -36,10 +37,14 @@ class AMavlink(AMavlinkDefaultObject):
 
     def close(self):
         self._mavutil.close()
+        self.logger.info('AMavlink connection closed.')
 
     @property
     def connection_url(self):
         return 'udp:{}:{}'.format(self._default_host, self._port)
+
+    def get_logger(self):
+        return self.logger
 
     def get_mavutil(self):
         return self._mavutil
@@ -62,5 +67,37 @@ class AMavlink(AMavlinkDefaultObject):
         self.message.clear_recv_buffer()
 
     def _connect(self):
-        self._mavutil = mavutil.mavlink_connection(self.connection_url, planner_format=False, notimestamps=True,
+        connection_url = self.connection_url
+        self.logger.info('Connect to {}'.format(connection_url))
+        self._mavutil = mavutil.mavlink_connection(connection_url, planner_format=False, notimestamps=True,
                                                    robust_parsing=True)
+
+    def _initialize_logger(self, debug_log_to_console=False):
+        """
+        Source: https://docs.python.org/3/howto/logging-cookbook.html
+        :return:
+        """
+        import logging
+
+        logger = logging.getLogger('amavlink_logger')
+        logger.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+        log_hander = logging.FileHandler('amavlink.log')
+        log_hander.setLevel(logging.INFO)
+        log_hander.setFormatter(formatter)
+
+        debug_log_handler = logging.FileHandler('amavlink_debug.log')
+        debug_log_handler.setLevel(logging.DEBUG)
+        debug_log_handler.setFormatter(formatter)
+
+        if debug_log_to_console:
+            console_handler = logging.StreamHandler()
+            console_handler.setLevel(logging.DEBUG)
+            console_handler.setFormatter(formatter)
+            logger.addHandler(console_handler)
+
+        logger.addHandler(log_hander)
+        logger.addHandler(debug_log_handler)
+        logger.info('AMavlink loggers initilaized')
+        self.logger = logger

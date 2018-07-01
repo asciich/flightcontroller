@@ -5,11 +5,13 @@ from AMavlinkEnums import AMavlinkEnums
 
 class AMavlinkDefaultObject(object):
 
-    def __init__(self):
+    def __init__(self, amavlink=None):
         self._default_timeout = 3
         self._default_retries = 10
         self._default_retry_delay = 0.5
         self._enums = AMavlinkEnums()
+        if amavlink is not None:
+            self.logger = amavlink.get_logger()
 
     @property
     def is_python3(self):

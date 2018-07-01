@@ -18,13 +18,16 @@ class AMavlinkCLI(object):
         subparsers = parser.add_subparsers(help='Main commands')
 
         eeprom_parser = subparsers.add_parser('eeprom', help='Handle eeprom')
+        eeprom_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output')
         eeprom_parser.add_argument('--reset-default-values', action='store_true', help='Reset flightcontroller EEPROM')
 
         param_parser = subparsers.add_parser('param', help='Manipulate parameters')
+        param_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output')
         param_parser.add_argument('--get', help='Get a parameter value')
         param_parser.add_argument('--set', nargs=2, help='Set a parameter. Syntax: "--set PARAM_NAME VALUE"')
 
         paramfile_parser = subparsers.add_parser('paramfile', help='Handle param files')
+        paramfile_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output')
         paramfile_parser.add_argument('--upload', nargs='+', help='Upload all parameters in a file')
         paramfile_parser.add_argument('--verify', nargs='+', help='Verify parameters in a file')
 
@@ -33,7 +36,7 @@ class AMavlinkCLI(object):
             exit(2)
 
         args = parser.parse_args(args=argv)
-        self._amavlink = AMavlink()
+        self._amavlink = AMavlink(debug_log_to_console=args.debug)
         if argv[0] == 'param':
             self._run_param(args)
         elif argv[0] == 'paramfile':

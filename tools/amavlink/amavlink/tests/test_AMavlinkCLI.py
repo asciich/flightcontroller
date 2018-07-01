@@ -28,7 +28,7 @@ class TestAMavlinkCLI(object):
     def _assert_text_in_output(self, capsys, expected_stdout, expected_stderr=[]):
         captured = capsys.readouterr()
         stdout = captured.out.decode()
-        stderr = captured.out.decode()
+        stderr = captured.err.decode()
         for text in expected_stdout:
             assert text in stdout
         for text in expected_stderr:
@@ -141,3 +141,16 @@ class TestAMavlinkCLI(object):
         ]
         self._assert_text_in_output(capsys, expected_stdout=expected_text)
         assert 0 == amavlink.param.get('SYSID_SW_MREV')
+
+    def test_enable_debug_log_output(self, mavlink_cli, capsys):
+        assert 0 == mavlink_cli.main(['param', '--debug', '--get', 'CH7_OPT'])
+
+        expected_stdout = [
+            'Get param "CH7_OPT" = ',
+        ]
+        expected_stderr = [
+            'DEBUG',
+            'AMavlinkMessage:',
+            'amavlink_logger - INFO - Get param "CH7_OPT" == ',
+        ]
+        self._assert_text_in_output(capsys=capsys, expected_stdout=expected_stdout, expected_stderr=expected_stderr)
