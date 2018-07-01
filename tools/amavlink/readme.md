@@ -43,6 +43,10 @@ Verify parameters from [PARAM.FILE](doc/param_file.md):
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --verify /params/PARAM.FILE
 ```
 
+### Debug output
+
+By adding ```--debug``` as command parameter the debug output is enabled.
+
 ## Installation
 
 It is recomended to use the [asciich/amavlink](https://hub.docker.com/r/asciich/amavlink/) docker container to run amavlink.
