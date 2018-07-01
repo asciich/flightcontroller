@@ -19,16 +19,8 @@ class AMavlinkParam(AMavlinkDefaultObject):
 
         # Read several times to prevent readout errors:
         param_value = self._get_param_value(param_name)
-        for i in range(3):
-            param_value2 = self._get_param_value(param_name)
-            if param_value != param_value2:
-                self.logger.debug('Get param "{}" missmatch: "{}" != "{}", retry readout'.format(param_name, param_value, param_value2))
-                param_value = param_value2
-                time.sleep(self.retry_delay)
-            else:
-                self.logger.info('Get param "{}" == {}'.format(param_name, param_value))
-                return param_value
-        raise AMavlinkParamNotReceiveError()
+        self.logger.info('Get param "{}" == {}'.format(param_name, param_value))
+        return param_value
 
     def set(self, param_name, param_value):
         self._amavlink.heartbeat.wait_if_target_unknown()
