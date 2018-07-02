@@ -2,6 +2,7 @@
 
 ## v 0.03
 
+* Fixed float compare to verify parameter values. 
 * Use ```127.0.0.1``` instead of ```localhost``` for default connection.
 
 ## v 0.02

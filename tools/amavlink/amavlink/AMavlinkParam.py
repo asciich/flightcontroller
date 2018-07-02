@@ -55,9 +55,20 @@ class AMavlinkParam(AMavlinkDefaultObject):
 
     def compare_values_equal(self, value, expected_value):
         if isinstance(value, float):
-            return value == float(expected_value)
+            return self._float_compare(value, expected_value)
+        elif isinstance(value, str):
+            return self._float_compare(value, expected_value)
+        elif isinstance(value, int):
+            return value == int(float(expected_value))
         else:
             raise Exception('Unknown type for comparison')
+
+    def _float_compare(self, val1, val2, error=1e-9):
+        diff = abs(float(val1) - float(val2))
+        if diff <= error:
+            return True
+        else:
+            return False
 
     def _get_param_value(self, param_name):
         mavutil = self._amavlink.get_mavutil()
