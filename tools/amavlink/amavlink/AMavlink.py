@@ -23,7 +23,7 @@ class AMavlink(AMavlinkDefaultObject):
             self._port = 14551
         else:
             self._port = int(port)
-        self._default_host = 'localhost'
+        self._default_host = '127.0.0.1'
         self._mavutil = None
         self._connect()
         self.command = AMavlinkCommand(self)
