@@ -95,7 +95,7 @@ class AMavlinkCLI(object):
                 for param_name in param_file:
                     param_value = param_file[param_name]
                     read_value = self._amavlink.param.get(param_name)
-                    if float(param_value) == float(read_value):
+                    if self._amavlink.param.compare_values_equal(param_value, read_value):
                         print('{} {} == {} verified.'.format(param_name, param_value, read_value))
                     else:
                         print('{} {} != {} verification ERROR!'.format(param_name, param_value, read_value))
