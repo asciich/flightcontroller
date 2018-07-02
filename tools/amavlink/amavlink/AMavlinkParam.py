@@ -1,7 +1,8 @@
 import time
 
 from AMavlinkDefaultObject import AMavlinkDefaultObject
-from AMavlinkErrors import AMavlinkParamVerificationError, AMavlinkParamNotReceiveError, AMavlinkParamSetError
+from AMavlinkErrors import AMavlinkParamVerificationError, AMavlinkParamNotReceiveError, AMavlinkParamSetError, \
+    AMavlinkMessageNotReceivedError
 from AMavlinkPramFile import AMavlinkParamFile
 
 
@@ -17,7 +18,6 @@ class AMavlinkParam(AMavlinkDefaultObject):
             param_name = param_name.encode()
         self.logger.info('Get param "{}" requested'.format(param_name))
 
-        # Read several times to prevent readout errors:
         param_value = self._get_param_value(param_name)
         self.logger.info('Get param "{}" == {}'.format(param_name, param_value))
         return param_value
@@ -64,7 +64,11 @@ class AMavlinkParam(AMavlinkDefaultObject):
         self._amavlink.message.clear_recv_buffer()
         for i in range(self.retries):
             mavutil.param_fetch_one(param_name)
-            param_message = self._amavlink.message.get(strmatch=param_name, blocking=True)
+            try:
+                param_message = self._amavlink.message.get(strmatch=param_name, blocking=True)
+            except AMavlinkMessageNotReceivedError:
+                param_message = None
+                self.logger.warning('AMavlinkParam: Unable to get param {}. Retrying.'.format(param_name))
             if param_message is not None:
                 break
             time.sleep(self.retry_delay)
