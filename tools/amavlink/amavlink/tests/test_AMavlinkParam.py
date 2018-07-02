@@ -59,3 +59,19 @@ class TestAMavlinkParam(object):
     def test_verify_param_from_file(self, amavlink, param_file):
         amavlink.param.set_from_file(path=param_file)
         amavlink.param.verify_from_file(path=param_file)
+
+    @pytest.mark.parametrize('val1, val2, equal', [
+        (1.1, 1, False),
+        (0.000001, 0.0000001, False),
+        (1,1, True),
+        (1.0, 1, True),
+        ('1', '1.0', True),
+        (1, '1.0', True),
+        ('1', '1.0', True),
+        ('1', '1', True),
+        ('1.0', 1, True),
+        (-1, 1, False),
+        (10.43334961, 10.4333496094, True),
+    ])
+    def test_comapare_equal(self, amavlink, val1, val2, equal):
+        assert equal == amavlink.param.compare_values_equal(val1, val2)
