@@ -2,6 +2,7 @@
 
 ## v 0.02
 
+* Bugfix: Fixed get param instability.
 * Added ```--debug``` flag to CLI.
 * Clear EEPROM added to CLI.
 * Support for markdown files as param.file.

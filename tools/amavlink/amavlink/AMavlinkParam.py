@@ -73,5 +73,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
                 break
             time.sleep(self.retry_delay)
         if param_message is None:
+            self.logger.warning('AMavlinkParam: Unable to receive param_message for {}'.format(param_name))
             raise AMavlinkParamNotReceiveError('param name: {}'.format(param_name))
+        self.logger.debug('AMavlinkParam: Received message to get param {}: {}'.format(param_name, param_message))
         return param_message.param_value

@@ -37,6 +37,7 @@ class AMavlinkCLI(object):
 
         args = parser.parse_args(args=argv)
         self._amavlink = AMavlink(debug_log_to_console=args.debug)
+        self._amavlink.logger.debug('AMavlinkCLI parameters {}'.format(argv))
         if argv[0] == 'param':
             self._run_param(args)
         elif argv[0] == 'paramfile':
