@@ -1,5 +1,9 @@
 # AMavlink Release Notes
 
+## v 0.03
+
+* Use ```127.0.0.1``` instead of ```localhost``` for default connection.
+
 ## v 0.02
 
 * Bugfix: Fixed get param instability.
