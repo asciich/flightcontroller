@@ -1,0 +1,7 @@
+commit 27229c83f6975f7123ea70fe440e50ae4b1aba72
+Author: Randy Mackay <rmackay9@yahoo.com>
+Date:   Wed Jan 31 10:50:47 2018 +0900
+
+    Copter: version to 3.5.5
+
+APMVERSION: APM:Copter V3.5.5
