@@ -13,3 +13,7 @@ Upload firmware. Replace /dev/ttyACM0 and the firmware path to fit your need.
 ```
 px_uploader.py --port /dev/ttyACM0 firmware/3.5.5/ArduCopter-v2.px4
 ```
+
+## Additional information/ Sources
+
+* [Ardupilot Firmware](http://firmware.ardupilot.org/)
