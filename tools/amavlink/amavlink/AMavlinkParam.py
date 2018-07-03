@@ -29,11 +29,19 @@ class AMavlinkParam(AMavlinkDefaultObject):
             param_name = param_name.encode()
         param_value = float(param_value)
         for i in range(self.retries):
+            self.logger.info('Set param "{}" to "{}"'.format(param_name, param_value))
             mavutil.mav.param_set_send(self._amavlink.heartbeat.system_id, self._amavlink.heartbeat.component_id,
                                        param_name, param_value, 0)
+            self.logger.debug('Readback param "{}" to verify param.set was successful'.format(param_name))
             read_value = self.get(param_name)
             if self.compare_values_equal(read_value, param_value):
                 return
+            else:
+                self.logger.warning(
+                    'param.set: Readback param "{}" failed: expected "{}" != "{}" readback'.format(param_name,
+                                                                                                   param_value,
+                                                                                                   read_value))
+
         raise AMavlinkParamSetError()
 
     def set_from_file(self, path):

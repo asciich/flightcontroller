@@ -4,6 +4,7 @@ import pytest
 
 from AMavlinkErrors import AMavlinkMessageNotReceivedError
 
+
 @pytest.mark.usefixtures("arducopter_sitl")
 class TestAMavlinkMessages(object):
 

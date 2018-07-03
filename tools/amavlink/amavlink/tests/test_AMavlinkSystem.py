@@ -1,7 +1,5 @@
 import time
 
-import pytest
-
 
 class TestAMavlinkSystem(object):
 

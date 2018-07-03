@@ -1,7 +1,5 @@
 import pytest
 
-from AMavlinkErrors import ErrorAMavlinkNoCommandSpecified
-
 
 @pytest.mark.usefixtures("arducopter_sitl")
 class TestAMavLink():

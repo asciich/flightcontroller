@@ -1,6 +1,3 @@
-import pytest
-
-
 class TestAMavlinkEnums(object):
 
     def test_mav_state(self, enums):
