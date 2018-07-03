@@ -63,7 +63,7 @@ class TestAMavlinkParam(object):
     @pytest.mark.parametrize('val1, val2, equal', [
         (1.1, 1, False),
         (0.000001, 0.0000001, False),
-        (1,1, True),
+        (1, 1, True),
         (1.0, 1, True),
         ('1', '1.0', True),
         (1, '1.0', True),

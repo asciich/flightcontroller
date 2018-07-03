@@ -28,7 +28,7 @@ class AMavlinkMessage(AMavlinkDefaultObject):
             timeout = self.timeout
         self._amavlink.heartbeat.wait_if_target_unknown()
         if type is not None:
-            message =  mavutil.recv_match(type=type, blocking=blocking, timeout=timeout)
+            message = mavutil.recv_match(type=type, blocking=blocking, timeout=timeout)
             self._log_debug('Received message by type=="{}" : {}'.format(type, message))
             return message
         elif strmatch is not None:

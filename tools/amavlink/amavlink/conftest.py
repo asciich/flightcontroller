@@ -54,12 +54,14 @@ def arducopter_sitl():
     yield sitl_container
     sitl_container.kill()
 
+
 @pytest.fixture
 def is_python3():
     if sys.version_info.major == 3:
         return True
     else:
         return False
+
 
 @pytest.fixture
 def amavlink():

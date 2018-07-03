@@ -23,6 +23,6 @@ class TestAMAvlinkCommand():
         if is_python3:
             expected_error_object = ErrorAMavlinkNoCommandSpecified
         else:
-            expected_error_object = Exception # Pytest in python 2 does not handle custom Error Commands
+            expected_error_object = Exception  # Pytest in python 2 does not handle custom Error Commands
         with pytest.raises(expected_error_object):
             amavlink.command.send_long()
