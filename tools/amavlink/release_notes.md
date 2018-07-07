@@ -1,5 +1,9 @@
 # AMavlink Release Notes
 
+## v 0.05
+
+* Travis support for Python2.7 added. Python 3 is still not supported.
+
 ## v 0.04
 
 * Use relative error to compare float. This fixes the verification step for some values.
