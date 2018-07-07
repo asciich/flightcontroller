@@ -1,0 +1,11 @@
+---
+# Travis file for testing flightcontroller tools.
+
+sudo: false
+language: python
+python:
+  - "2.7"
+  # - "3.4" # Python 3 is currently not supported by pymavlink,
+  # therefore also not supported by amavlink which is currently the only tool available in this repository.
+install: pip install tox-travis
+script: tox
