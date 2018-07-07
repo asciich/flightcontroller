@@ -1,5 +1,9 @@
 # AMavlink Release Notes
 
+## v 0.04
+
+* Use relative error to compare float. This fixes the verification step for some values.
+
 ## v 0.03
 
 * Added debug messages for param.set
