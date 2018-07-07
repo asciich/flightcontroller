@@ -9,3 +9,4 @@ python:
   # therefore also not supported by amavlink which is currently the only tool available in this repository.
 install: pip install tox-travis
 script: ./tools/amavlink/amavlink/test_amavlink.sh
+
