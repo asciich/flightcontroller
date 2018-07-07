@@ -19,7 +19,7 @@ AMavlink expects a with UDP-Port 14551 open on the same machine and **only one f
 
 * [Reset EEPROM to default values](docs/reset_eeprom_to_default_values.md)
 
-### Parameter files
+### Single parameters
 
 Get single parameter (CH7_OPT):
 ```bash
@@ -30,6 +30,8 @@ Set single parameter (CH7_OPT to 8):
 ```bash
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink param --set CH7_OPT 8
 ```
+
+### Parameter files
 
 Upload parameters from [PARAM.FILE](doc/param_file.md):
 
