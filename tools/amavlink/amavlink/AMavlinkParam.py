@@ -1,5 +1,7 @@
 import time
 
+import math
+
 from AMavlinkDefaultObject import AMavlinkDefaultObject
 from AMavlinkErrors import AMavlinkParamVerificationError, AMavlinkParamNotReceiveError, AMavlinkParamSetError, \
     AMavlinkMessageNotReceivedError
@@ -71,9 +73,15 @@ class AMavlinkParam(AMavlinkDefaultObject):
         else:
             raise Exception('Unknown type for comparison')
 
-    def _float_compare(self, val1, val2, error=1e-8):
-        diff = abs(float(val1) - float(val2))
-        if diff <= error:
+    def _float_compare(self, val1, val2, allow_relative_error=4e-8):
+        if float(val1) == float(val2):
+            return True
+        if float(val2) == 0.0:
+            val_tmp = val2
+            val2 = val1
+            val1 = val_tmp
+        relative_error = abs(float(val1) - float(val2)) / abs(float(val2))
+        if relative_error <= allow_relative_error:
             return True
         else:
             return False
