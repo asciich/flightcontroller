@@ -2,7 +2,7 @@
 
 ## v 0.05
 
-* Travis support for Python2.7 added. Python 3 is still not supported.
+* Travis CI support for Python2.7 added to automatically test amavlink implementation in pullrequests. Python 3 is still not supported.
 
 ## v 0.04
 
