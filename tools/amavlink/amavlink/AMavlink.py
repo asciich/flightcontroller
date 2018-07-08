@@ -2,9 +2,9 @@ import time
 
 from pymavlink import mavutil
 
-from AMAvlinkEeprom import AMavlinkEeprom
 from AMavlinkCommand import AMavlinkCommand
 from AMavlinkDefaultObject import AMavlinkDefaultObject
+from AMavlinkEeprom import AMavlinkEeprom
 from AMavlinkFlightmode import AMavlinkFlightmode
 from AMavlinkHeartbeat import AMavlinkHeartbeat
 from AMavlinkLocation import AMavlinkLocation

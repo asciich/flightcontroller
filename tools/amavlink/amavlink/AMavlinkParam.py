@@ -1,7 +1,5 @@
 import time
 
-import math
-
 from AMavlinkDefaultObject import AMavlinkDefaultObject
 from AMavlinkErrors import AMavlinkParamVerificationError, AMavlinkParamNotReceiveError, AMavlinkParamSetError, \
     AMavlinkMessageNotReceivedError
