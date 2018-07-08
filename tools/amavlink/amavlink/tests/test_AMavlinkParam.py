@@ -94,6 +94,7 @@ class TestAMavlinkParam(object):
         (-10.1000003815, 10.1, False),
         (1.0 + 0.9e-7, 1, True),
         (1.0 + 1.1e-7, 1, False),
+        (0.05, 0.0500000007451,  True),
     ])
-    def test_comapare_equal(self, amavlink, val1, val2, equal):
+    def test_compare_equal(self, amavlink, val1, val2, equal):
         assert equal == amavlink.param.compare_values_equal(val1, val2)

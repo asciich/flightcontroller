@@ -41,6 +41,8 @@ class AMavlinkHeartbeatNotReceivedError(AMavLinkError):
 class AMavlinkCLIParseError(AMavLinkError):
     pass
 
+class AMavlinkCLIParamVerificationError(AMavLinkError):
+    pass
 
 class AMavlinkParamFileDelimiterNotFoundInLineError(AMavLinkError):
     pass

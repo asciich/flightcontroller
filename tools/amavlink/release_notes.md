@@ -3,6 +3,7 @@
 ## v 0.06
 
 * Increased floating point compare tollerance to 1e7.
+* Fixed float compare in CLI to set parameters.
 
 ## v 0.05
 
