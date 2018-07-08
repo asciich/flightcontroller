@@ -20,10 +20,18 @@ class TestAMavlinkParam(object):
         (b'CH7_OPT', 8),
         ('CH7_OPT', '7'),
         ('RC11_REVERSED', 0),
+        ('AUTOTUNE_AGGR', 0.05),
+        ('AUTOTUNE_AGGR', 0.055),
+        ('AUTOTUNE_AGGR', 0.06),
+        ('AUTOTUNE_AGGR', 0.07),
+        ('AUTOTUNE_AGGR', 0.075),
+        ('AUTOTUNE_AGGR', 0.08),
+        ('AUTOTUNE_AGGR', 0.09),
+        ('AUTOTUNE_AGGR', 0.1),
     ])
     def test_set_and_get_param(self, amavlink, param_name, param_value):
         amavlink.param.set(param_name, param_value)
-        assert float(param_value) == amavlink.param.get(param_name)
+        assert amavlink.param.compare_values_equal(param_value, amavlink.param.get(param_name))
 
     def test_get_param_several_times(self, amavlink):
         param_name = 'CH7_OPT'
@@ -84,8 +92,8 @@ class TestAMavlinkParam(object):
         (10100.0003815, 10100.0, True),
         (10.1000003815, -10.1, False),
         (-10.1000003815, 10.1, False),
-        (1.0 + 3.9e-8, 1, True),
-        (1.0 + 4.1e-8, 1, False),
+        (1.0 + 0.9e-7, 1, True),
+        (1.0 + 1.1e-7, 1, False),
     ])
     def test_comapare_equal(self, amavlink, val1, val2, equal):
         assert equal == amavlink.param.compare_values_equal(val1, val2)

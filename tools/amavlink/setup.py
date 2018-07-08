@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='amavlink',
-      version='0.05',
+      version='0.06',
       description='MAVLink communication library',
       author='Reto Hasler',
       author_email='reto.hasler@asciich.ch',
