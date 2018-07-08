@@ -54,20 +54,27 @@ class TestAMavlinkCLI(object):
             mavlink_cli.main(['param', '--get'])
         self._assert_system_exit_shows_help(system_exit, capsys)
 
-    def test_set_param_cli(self, amavlink, mavlink_cli, capsys):
-        param_name = 'CH7_OPT'
-        param_value = 8
-        amavlink.param.set(param_name, param_value)
-        assert param_value == amavlink.param.get(param_name)
-
-        param_value = 7
+    @pytest.mark.parametrize('param_name, param_value', [
+        ('CH7_OPT', 7),
+        ('CH7_OPT', 8),
+        ('AUTOTUNE_AGGR', 0.05),
+        ('AUTOTUNE_AGGR', 0.055),
+        ('AUTOTUNE_AGGR', 0.06),
+        ('AUTOTUNE_AGGR', 0.07),
+        ('AUTOTUNE_AGGR', 0.08),
+        ('AUTOTUNE_AGGR', 0.09),
+        ('AUTOTUNE_AGGR', 0.095),
+        ('AUTOTUNE_AGGR', 0.1),
+    ])
+    def test_set_param_cli(self, amavlink, mavlink_cli, capsys, param_name, param_value):
         assert 0 == mavlink_cli.main(['param', '--set', param_name, str(param_value)])
-        assert param_value == amavlink.param.get(param_name)
+        read_value = amavlink.param.get(param_name)
+        assert amavlink.param.compare_values_equal(param_value, read_value)
 
         stdout = capsys.readouterr().out.decode()
         expected_outputs = [
             'Set param "{}" = {}'.format(param_name, param_value),
-            'Verified',
+            '{} {} == {} verified.'.format(param_name, param_value, read_value),
         ]
         for expected_output in expected_outputs:
             assert expected_output in stdout

@@ -4,9 +4,8 @@ import argparse
 import sys
 
 from AMavlink import AMavlink
-from AMavlinkErrors import AMavlinkCLIParseError
+from AMavlinkErrors import AMavlinkCLIParseError, AMavlinkCLIParamVerificationError
 from AMavlinkPramFile import AMavlinkParamFile
-
 
 class AMavlinkCLI(object):
 
@@ -67,14 +66,13 @@ class AMavlinkCLI(object):
             param_name = args.set[0]
             param_value = args.set[1]
             self._set_param(param_name, param_value)
-            read_value = self._amavlink.param.get(param_name)
-            if float(param_value) == float(read_value):
-                print('Verified')
-            else:
-                print('Setting param failed')
-                exit(1)
+            try:
+                self._verify_param(param_name, param_value)
+            except AMavlinkCLIParamVerificationError:
+                return 1
         else:
             raise AMavlinkCLIParseError()
+        return 0
 
     def _run_paramfile(self, args):
         if args.upload is not None:
@@ -94,11 +92,9 @@ class AMavlinkCLI(object):
                 param_file.read()
                 for param_name in param_file:
                     param_value = param_file[param_name]
-                    read_value = self._amavlink.param.get(param_name)
-                    if self._amavlink.param.compare_values_equal(param_value, read_value):
-                        print('{} {} == {} verified.'.format(param_name, param_value, read_value))
-                    else:
-                        print('{} {} != {} verification ERROR!'.format(param_name, param_value, read_value))
+                    try:
+                        self._verify_param(param_name, param_value)
+                    except AMavlinkCLIParamVerificationError:
                         return 1
                     param_counter += 1
             print('{} params verified.'.format(param_counter))
@@ -110,6 +106,14 @@ class AMavlinkCLI(object):
         self._amavlink.param.set(param_name, param_value)
         print('Set param "{}" = {}'.format(param_name, param_value))
 
+    def _verify_param(self, param_name, param_value):
+        read_value = self._amavlink.param.get(param_name)
+        if self._amavlink.param.compare_values_equal(param_value, read_value):
+            print('{} {} == {} verified.'.format(param_name, param_value, read_value))
+        else:
+            error_message = '{} {} != {} verification ERROR!'.format(param_name, param_value, read_value)
+            print(error_message)
+            raise AMavlinkCLIParamVerificationError(error_message)
 
 def main():
     amavlink_cli = AMavlinkCLI()
