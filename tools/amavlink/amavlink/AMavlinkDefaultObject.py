@@ -1,4 +1,5 @@
 import sys
+import time
 
 from AMavlinkEnums import AMavlinkEnums
 
@@ -27,6 +28,9 @@ class AMavlinkDefaultObject(object):
     @property
     def retry_delay(self):
         return self._default_retry_delay
+
+    def sleep_retry_delay(self):
+        time.sleep(self.retry_delay)
 
     @property
     def timeout(self):

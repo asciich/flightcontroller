@@ -1,5 +1,9 @@
 # AMavlink Release Notes
 
+## v 0.07
+
+* Capture strmatch messages to stdout.
+
 ## v 0.06
 
 * Increased floating point compare tollerance to 1e7.

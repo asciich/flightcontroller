@@ -4,13 +4,15 @@ import argparse
 import sys
 
 from AMavlink import AMavlink
-from AMavlinkErrors import AMavlinkCLIParseError, AMavlinkCLIParamVerificationError
+from AMavlinkDefaultObject import AMavlinkDefaultObject
+from AMavlinkErrors import AMavlinkCLIParseError, AMavlinkCLIParamVerificationError, AMavlinkMessageNotReceivedError
 from AMavlinkPramFile import AMavlinkParamFile
 
-class AMavlinkCLI(object):
+
+class AMavlinkCLI(AMavlinkDefaultObject):
 
     def __init__(self):
-        pass
+        super(AMavlinkCLI, self).__init__()
 
     def main(self, argv):
         parser = argparse.ArgumentParser(description='AMavlink CLI for Mavlink communication.')
@@ -19,6 +21,11 @@ class AMavlinkCLI(object):
         eeprom_parser = subparsers.add_parser('eeprom', help='Handle eeprom')
         eeprom_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output')
         eeprom_parser.add_argument('--reset-default-values', action='store_true', help='Reset flightcontroller EEPROM')
+
+        messages_parser = subparsers.add_parser('messages', help='Receive MAVLink messages')
+        messages_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output')
+        messages_parser.add_argument('--strmatch', help='Filter messages only matching given string')
+        messages_parser.add_argument('--nmsg', type=int, default=-1, help='Stop after n messages.')
 
         param_parser = subparsers.add_parser('param', help='Manipulate parameters')
         param_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output')
@@ -37,12 +44,14 @@ class AMavlinkCLI(object):
         args = parser.parse_args(args=argv)
         self._amavlink = AMavlink(debug_log_to_console=args.debug)
         self._amavlink.logger.debug('AMavlinkCLI parameters {}'.format(argv))
-        if argv[0] == 'param':
-            self._run_param(args)
+        if argv[0] == 'eeprom':
+            return self._run_eeprom(args)
+        elif argv[0] == 'messages':
+            return self._run_messages(args)
+        elif argv[0] == 'param':
+            return self._run_param(args)
         elif argv[0] == 'paramfile':
             return self._run_paramfile(args)
-        elif argv[0] == 'eeprom':
-            return self._run_eeprom(args)
         else:
             AMavlinkCLIParseError()
         return 0
@@ -52,6 +61,27 @@ class AMavlinkCLI(object):
             self._amavlink.eeprom.prepare_reset_to_default_parameters()
             print('Flightcontroller prepared for resetting EEPROM')
             print('Reboot Flightcontroller to reset EEPROM')
+        else:
+            raise AMavlinkCLIParseError()
+        return 0
+
+    def _run_messages(self, args):
+        nmsg = args.nmsg
+
+        if args.strmatch is not None:
+            strmatch = args.strmatch
+            print('Capturing messages matching "{}"'.format(strmatch))
+            msg_counter = 0
+            while True:
+                try:
+                    msg = self._amavlink.message.get(strmatch=strmatch)
+                    print(msg)
+                    msg_counter += 1
+                except AMavlinkMessageNotReceivedError:
+                    self.sleep_retry_delay()
+                if nmsg > 0:
+                    if msg_counter >= nmsg:
+                        return 0
         else:
             raise AMavlinkCLIParseError()
         return 0
@@ -115,10 +145,11 @@ class AMavlinkCLI(object):
             print(error_message)
             raise AMavlinkCLIParamVerificationError(error_message)
 
+
 def main():
     amavlink_cli = AMavlinkCLI()
-    exit(amavlink_cli.main(sys.argv[1:]))
+    return amavlink_cli.main(sys.argv[1:])
 
 
 if __name__ == '__main__':
-    main()
+    exit(main())
