@@ -69,4 +69,4 @@ The tests use the [asciich/ardupilot_sitl](https://github.com/asciich/docker-ard
 * [MAVLink common message set](http://mavlink.org/messages/common)
 * [MAVLink commands on Ardupilot dev](http://ardupilot.org/dev/docs/mavlink-commands.html)
 * Examples
-** [Magteest example code](https://www.samba.org/tridge/UAV/pymavlink/unpacked/examples/magtest.py)
+    * [Magtest example code](https://www.samba.org/tridge/UAV/pymavlink/unpacked/examples/magtest.py)
