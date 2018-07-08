@@ -1,5 +1,9 @@
 # AMavlink Release Notes
 
+## v 0.06
+
+* Increased floating point compare tollerance to 1e7.
+
 ## v 0.05
 
 * Travis CI support for Python2.7 added to automatically test amavlink implementation in pullrequests. Python 3 is still not supported.

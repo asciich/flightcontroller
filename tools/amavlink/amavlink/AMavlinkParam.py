@@ -73,7 +73,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
         else:
             raise Exception('Unknown type for comparison')
 
-    def _float_compare(self, val1, val2, allow_relative_error=4e-8):
+    def _float_compare(self, val1, val2, allow_relative_error=1e-7):
         if float(val1) == float(val2):
             return True
         if float(val2) == 0.0:
