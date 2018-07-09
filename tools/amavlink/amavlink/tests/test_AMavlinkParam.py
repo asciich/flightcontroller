@@ -98,3 +98,6 @@ class TestAMavlinkParam(object):
     ])
     def test_compare_equal(self, amavlink, val1, val2, equal):
         assert equal == amavlink.param.compare_values_equal(val1, val2)
+
+    def test_get_number_of_params(self, amavlink):
+        assert 907 == amavlink.param.get_number_of_params()

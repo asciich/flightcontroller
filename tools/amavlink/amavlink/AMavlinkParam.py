@@ -22,6 +22,10 @@ class AMavlinkParam(AMavlinkDefaultObject):
         self.logger.info('Get param "{}" == {}'.format(param_name, param_value))
         return param_value
 
+    def get_number_of_params(self):
+        param_message = self._get_param_message('CH7_OPT')
+        return param_message.param_count
+
     def set(self, param_name, param_value):
         self._amavlink.heartbeat.wait_if_target_unknown()
         mavutil = self._amavlink.get_mavutil()
@@ -84,13 +88,16 @@ class AMavlinkParam(AMavlinkDefaultObject):
         else:
             return False
 
-    def _get_param_value(self, param_name):
+    def _get_param_message(self, param_name):
         mavutil = self._amavlink.get_mavutil()
+        mavutil.param_fetch_one(param_name)
+        return self._amavlink.message.get(strmatch=param_name, blocking=True)
+
+    def _get_param_value(self, param_name):
         self._amavlink.message.clear_recv_buffer()
         for i in range(self.retries):
-            mavutil.param_fetch_one(param_name)
             try:
-                param_message = self._amavlink.message.get(strmatch=param_name, blocking=True)
+                param_message = self._get_param_message(param_name=param_name)
             except AMavlinkMessageNotReceivedError:
                 param_message = None
                 self.logger.warning('AMavlinkParam: Unable to get param {}. Retrying.'.format(param_name))
