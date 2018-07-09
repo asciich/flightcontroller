@@ -2,6 +2,8 @@
 
 ## v 0.07
 
+* Parameters:
+    * Added get_number_of_params.
 * Capture strmatch messages to stdout.
 
 ## v 0.06

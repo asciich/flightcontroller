@@ -40,7 +40,7 @@ class AMavlinkHeartbeat(AMavlinkDefaultObject):
         )
 
     def wait(self, timeout=None):
-        mavutil = self._amavlink.get_mavutil()
+        mavutil = self._amavlink.get_mavutil(wait_heartbeat=False)
         if timeout is None:
             timeout = self.timeout
         heart_beat = mavutil.recv_match(type='HEARTBEAT', blocking=True, timeout=timeout)

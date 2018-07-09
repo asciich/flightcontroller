@@ -46,7 +46,9 @@ class AMavlink(AMavlinkDefaultObject):
     def get_logger(self):
         return self.logger
 
-    def get_mavutil(self):
+    def get_mavutil(self, wait_heartbeat=True):
+        if wait_heartbeat:
+            self.heartbeat.wait_if_target_unknown()
         return self._mavutil
 
     @property
