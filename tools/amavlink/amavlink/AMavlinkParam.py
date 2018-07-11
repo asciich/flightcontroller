@@ -13,28 +13,40 @@ class AMavlinkParam(AMavlinkDefaultObject):
         super(AMavlinkParam, self).__init__(amavlink)
         self._amavlink = amavlink
 
-    def get(self, param_name=None, param_index=None):
+    def get(self, param_name=None, param_index=None, clear_recv_buffer=True):
         self._amavlink.heartbeat.wait_if_target_unknown()
         if param_name is not None:
             if isinstance(param_name, str):
                 param_name = param_name.encode()
-            param = AMavlinkParameter(param_message=self._get_param_message(param_name=param_name))
-            return param
+            param = AMavlinkParameter(
+                param_message=self._get_param_message(param_name=param_name, clear_recv_buffer=clear_recv_buffer))
         elif param_index is not None:
-            param = AMavlinkParameter(param_message=self._get_param_message(param_index=param_index))
-            return param
+            param = AMavlinkParameter(
+                param_message=self._get_param_message(param_index=param_index, clear_recv_buffer=clear_recv_buffer))
         else:
             raise AMavlinkParamNotReceiveError('Param not specified')
         self.logger.info('Get param "{}" requested'.format(param_name))
+        return param
+
+    def get_all(self, progress_function=None):
+        all_params = dict()
+        n_params = self.get_number_of_params()
+        self._amavlink.message.clear_recv_buffer()
+        for param_index in range(n_params):
+            param = self.get(param_index=param_index, clear_recv_buffer=False)
+            all_params[param.name] = param
+            if progress_function is not None:
+                progress_function(actual_param=param_index + 1, total_params=n_params)
+        return all_params
+
+    def get_number_of_params(self):
+        param_message = self._get_param_message('CH7_OPT')
+        return param_message.param_count
 
     def get_value(self, param_name):
         param_value = self.get(param_name=param_name).value
         self.logger.info('Get param value "{}" == {}'.format(param_name, param_value))
         return param_value
-
-    def get_number_of_params(self):
-        param_message = self._get_param_message('CH7_OPT')
-        return param_message.param_count
 
     def set(self, param_name, param_value):
         self._amavlink.heartbeat.wait_if_target_unknown()
@@ -98,7 +110,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
         else:
             return False
 
-    def _get_param_message(self, param_name=None, param_index=None):
+    def _get_param_message(self, param_name=None, param_index=None, clear_recv_buffer=True):
         mavutil = self._amavlink.get_mavutil()
 
         if param_name is not None:
@@ -109,7 +121,9 @@ class AMavlinkParam(AMavlinkDefaultObject):
         else:
             raise AMavlinkParamNotReceiveError('_get_param_message no strmatch selector specified.')
 
-        self._amavlink.message.clear_recv_buffer()
+        if clear_recv_buffer:
+            self._amavlink.message.clear_recv_buffer()
+
         for i in range(self.retries):
             try:
                 mavutil.param_fetch_one(param_name)

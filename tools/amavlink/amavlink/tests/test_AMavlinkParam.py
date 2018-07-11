@@ -112,3 +112,22 @@ class TestAMavlinkParam(object):
 
     def test_get_number_of_params(self, amavlink):
         assert 907 == amavlink.param.get_number_of_params()
+
+    def test_get_all_params(self, amavlink, capsys):
+        def progress_function(actual_param, total_params):
+            if actual_param % 10 == 0:
+                print('Downloaded {} of {} parameters'.format(actual_param, total_params))
+
+        param_name = 'CH7_OPT'
+        param_value = 9
+        amavlink.param.set(param_name, param_value)
+        all_params = amavlink.param.get_all(progress_function=progress_function)
+        assert isinstance(all_params, dict)
+        assert 907 == len(all_params)
+        assert param_value == all_params[param_name].value
+
+        captured = capsys.readouterr()
+        stdout = captured.out.decode()
+        assert 'Downloaded 0 of 907 parameters' not in stdout
+        for i in range(10, 907, 10):
+            assert 'Downloaded {} of 907 parameters'.format(i) in stdout
