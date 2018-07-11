@@ -5,6 +5,7 @@
 * Parameters:
     * Added get_number_of_params.
     * Get parameters by index.
+    * Get all parameters.
 * Capture strmatch messages to stdout.
 
 ## v 0.06
