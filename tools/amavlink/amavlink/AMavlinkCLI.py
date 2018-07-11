@@ -89,7 +89,7 @@ class AMavlinkCLI(AMavlinkDefaultObject):
     def _run_param(self, args):
         if args.get is not None:
             param_name = args.get
-            param_value = self._amavlink.param.get(param_name)
+            param_value = self._amavlink.param.get_value(param_name=param_name)
             print('Get param "{}" = {}'.format(param_name, param_value))
 
         elif args.set is not None:
@@ -137,7 +137,7 @@ class AMavlinkCLI(AMavlinkDefaultObject):
         print('Set param "{}" = {}'.format(param_name, param_value))
 
     def _verify_param(self, param_name, param_value):
-        read_value = self._amavlink.param.get(param_name)
+        read_value = self._amavlink.param.get_value(param_name=param_name)
         if self._amavlink.param.compare_values_equal(param_value, read_value):
             print('{} {} == {} verified.'.format(param_name, param_value, read_value))
         else:

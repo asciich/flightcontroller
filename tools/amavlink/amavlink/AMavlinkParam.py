@@ -3,6 +3,7 @@ import time
 from AMavlinkDefaultObject import AMavlinkDefaultObject
 from AMavlinkErrors import AMavlinkParamVerificationError, AMavlinkParamNotReceiveError, AMavlinkParamSetError, \
     AMavlinkMessageNotReceivedError
+from AMavlinkParameter import AMavlinkParameter
 from AMavlinkPramFile import AMavlinkParamFile
 
 
@@ -12,14 +13,23 @@ class AMavlinkParam(AMavlinkDefaultObject):
         super(AMavlinkParam, self).__init__(amavlink)
         self._amavlink = amavlink
 
-    def get(self, param_name):
+    def get(self, param_name=None, param_index=None):
         self._amavlink.heartbeat.wait_if_target_unknown()
-        if isinstance(param_name, str):
-            param_name = param_name.encode()
+        if param_name is not None:
+            if isinstance(param_name, str):
+                param_name = param_name.encode()
+            param = AMavlinkParameter(param_message=self._get_param_message(param_name=param_name))
+            return param
+        elif param_index is not None:
+            param = AMavlinkParameter(param_message=self._get_param_message(param_index=param_index))
+            return param
+        else:
+            raise AMavlinkParamNotReceiveError('Param not specified')
         self.logger.info('Get param "{}" requested'.format(param_name))
 
-        param_value = self._get_param_value(param_name)
-        self.logger.info('Get param "{}" == {}'.format(param_name, param_value))
+    def get_value(self, param_name):
+        param_value = self.get(param_name=param_name).value
+        self.logger.info('Get param value "{}" == {}'.format(param_name, param_value))
         return param_value
 
     def get_number_of_params(self):
@@ -37,7 +47,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
             mavutil.mav.param_set_send(self._amavlink.heartbeat.system_id, self._amavlink.heartbeat.component_id,
                                        param_name, param_value, 0)
             self.logger.debug('Readback param "{}" to verify param.set was successful'.format(param_name))
-            read_value = self.get(param_name)
+            read_value = self.get(param_name=param_name).value
             if self.compare_values_equal(read_value, param_value):
                 return
             else:
@@ -59,7 +69,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
         param_file = AMavlinkParamFile(path)
         param_file.read()
         for param_name in param_file:
-            read_value = self.get(param_name)
+            read_value = self.get_value(param_name=param_name)
             param_value = param_file[param_name]
             if not self.compare_values_equal(read_value, param_value):
                 raise AMavlinkParamVerificationError('{} {} != {}'.format(param_name, param_value, read_value))
@@ -88,16 +98,22 @@ class AMavlinkParam(AMavlinkDefaultObject):
         else:
             return False
 
-    def _get_param_message(self, param_name):
+    def _get_param_message(self, param_name=None, param_index=None):
         mavutil = self._amavlink.get_mavutil()
-        mavutil.param_fetch_one(param_name)
-        return self._amavlink.message.get(strmatch=param_name, blocking=True)
 
-    def _get_param_value(self, param_name):
+        if param_name is not None:
+            strmatch = param_name
+        elif param_index is not None:
+            strmatch = 'param_index : {}'.format(param_index)
+            param_name = str(param_index)
+        else:
+            raise AMavlinkParamNotReceiveError('_get_param_message no strmatch selector specified.')
+
         self._amavlink.message.clear_recv_buffer()
         for i in range(self.retries):
             try:
-                param_message = self._get_param_message(param_name=param_name)
+                mavutil.param_fetch_one(param_name)
+                param_message = self._amavlink.message.get(strmatch=strmatch, blocking=True)
             except AMavlinkMessageNotReceivedError:
                 param_message = None
                 self.logger.warning('AMavlinkParam: Unable to get param {}. Retrying.'.format(param_name))
@@ -108,4 +124,4 @@ class AMavlinkParam(AMavlinkDefaultObject):
             self.logger.warning('AMavlinkParam: Unable to receive param_message for {}'.format(param_name))
             raise AMavlinkParamNotReceiveError('param name: {}'.format(param_name))
         self.logger.debug('AMavlinkParam: Received message to get param {}: {}'.format(param_name, param_message))
-        return param_message.param_value
+        return param_message
