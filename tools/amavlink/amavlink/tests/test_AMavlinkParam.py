@@ -31,14 +31,25 @@ class TestAMavlinkParam(object):
     ])
     def test_set_and_get_param(self, amavlink, param_name, param_value):
         amavlink.param.set(param_name, param_value)
-        assert amavlink.param.compare_values_equal(param_value, amavlink.param.get(param_name))
+        assert amavlink.param.compare_values_equal(param_value, amavlink.param.get_value(param_name=param_name))
 
     def test_get_param_several_times(self, amavlink):
         param_name = 'CH7_OPT'
         param_value = '7'
         amavlink.param.set(param_name, param_value)
         for i in range(5):
-            assert float(param_value) == amavlink.param.get(param_name)
+            assert float(param_value) == amavlink.param.get_value(param_name=param_name)
+
+    @pytest.mark.parametrize('param_name,param_index', [
+        ('SYSID_SW_MREV', 0),
+        ('SYSID_THISMAV', 1),
+        ('LGR_STARTUP', 100),
+        ('INS_POS2_Y', 200),
+        ('FHLD_XY_IMAX', 900),
+        ('FOLL_ENABLE', 906)
+    ])
+    def test_get_param_by_index(self, amavlink, param_name, param_index):
+        assert param_name == amavlink.param.get(param_index=param_index).name
 
     def test_set_param_from_file(self, amavlink, param_file):
         amavlink.param.set_from_file(path=param_file)

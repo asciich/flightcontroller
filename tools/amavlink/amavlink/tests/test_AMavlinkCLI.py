@@ -45,7 +45,7 @@ class TestAMavlinkCLI(object):
         param_name = 'CH7_OPT'
         param_value = 8
         amavlink.param.set(param_name, param_value)
-        assert param_value == amavlink.param.get(param_name)
+        assert param_value == amavlink.param.get_value(param_name=param_name)
 
         assert 0 == amavlink_cli.main(['param', '--get', param_name])
         expected_output = 'Get param "{}" = {}'.format(param_name, param_value)
@@ -70,7 +70,7 @@ class TestAMavlinkCLI(object):
     ])
     def test_set_param_cli(self, amavlink, amavlink_cli, capsys, param_name, param_value):
         assert 0 == amavlink_cli.main(['param', '--set', param_name, str(param_value)])
-        read_value = amavlink.param.get(param_name)
+        read_value = amavlink.param.get_value(param_name=param_name)
         assert amavlink.param.compare_values_equal(param_value, read_value)
 
         stdout = capsys.readouterr().out.decode()
@@ -149,7 +149,7 @@ class TestAMavlinkCLI(object):
             'Reboot Flightcontroller to reset EEPROM'
         ]
         self._assert_text_in_output(capsys, expected_stdout=expected_text)
-        assert 0 == amavlink.param.get('SYSID_SW_MREV')
+        assert 0 == amavlink.param.get_value(param_name='SYSID_SW_MREV')
 
     def test_enable_debug_log_output(self, amavlink_cli, capsys):
         assert 0 == amavlink_cli.main(['param', '--debug', '--get', 'CH7_OPT'])
@@ -160,7 +160,7 @@ class TestAMavlinkCLI(object):
         expected_stderr = [
             'DEBUG',
             'AMavlinkMessage:',
-            'amavlink_logger - INFO - Get param "CH7_OPT" == ',
+            'amavlink_logger - INFO - Get param value "CH7_OPT" == ',
         ]
         self._assert_text_in_output(capsys=capsys, expected_stdout=expected_stdout, expected_stderr=expected_stderr)
 
