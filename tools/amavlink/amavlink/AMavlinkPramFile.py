@@ -1,4 +1,7 @@
-from AMavlinkErrors import AMavlinkParamFileDelimiterNotFoundInLineError
+import datetime
+
+from AMavlinkErrors import AMavlinkParamFileDelimiterNotFoundInLineError, AMavlinkParamFileWriteEmptyFileError
+from AMavlinkParameter import AMavlinkParameter
 
 
 class AMavlinkParamFile(object):
@@ -9,6 +12,7 @@ class AMavlinkParamFile(object):
         self._default_section = 'AMAvlinkParamFile DEFAULT CONFIG SECTION'
         self._delimiters = ['=', ',', ':']
         self._codeblock_marker = '```'
+        self.note = ''
 
     def __getitem__(self, item):
         return self._parameters[item]
@@ -32,6 +36,21 @@ class AMavlinkParamFile(object):
     def __len__(self):
         return len(self._parameters)
 
+    def add_note(self, note_str):
+        self.note = note_str
+
+    def add_parameter(self, param, param_value):
+        if self._parameters is None:
+            self._parameters = {}
+        self._parameters[param] = param_value
+
+    def add_parameters(self, parameters):
+        for param_name in parameters:
+            param_value = parameters[param_name]
+            if isinstance(param_value, AMavlinkParameter):
+                param_value = param_value.value
+            self.add_parameter(param_name, param_value)
+
     def read(self):
         file_content = open(self._path, 'r').read()
         if self._codeblock_marker in file_content:
@@ -39,6 +58,31 @@ class AMavlinkParamFile(object):
             file_content = self._remove_command_lines(file_content)
         file_content = self._remove_comments(file_content)
         self._parameters = self._extract_parameters(file_content)
+        self._note = ''
+
+    def write(self):
+        if self._parameters is None:
+            raise AMavlinkParamFileWriteEmptyFileError()
+        if len(self._parameters) == 0:
+            raise AMavlinkParamFileWriteEmptyFileError()
+        self._write_header()
+        self._write_param_lines()
+
+    def _write_header(self):
+        with open(self._path, 'w') as f:
+            f.write('#Date: {}\n'.format(str(datetime.datetime.now())))
+            if len(self.note) > 0:
+                f.write('#Note: {}\n'.format(self.note))
+            f.write('#Note: Created by amavlink\n')
+
+    def _write_param_lines(self):
+        param_lines = []
+        for param_name in self._parameters:
+            param_lines.append('{}, {}\n'.format(param_name, self[param_name]))
+        param_lines = sorted(param_lines)
+        with open(self._path, 'a') as f:
+            for param_line in param_lines:
+                f.write(param_line)
 
     def _get_delimiter_in_line(self, file_line):
         smallest_index = len(file_line)

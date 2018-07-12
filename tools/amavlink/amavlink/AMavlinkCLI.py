@@ -33,9 +33,11 @@ class AMavlinkCLI(AMavlinkDefaultObject):
         param_parser.add_argument('--set', nargs=2, help='Set a parameter. Syntax: "--set PARAM_NAME VALUE"')
 
         paramfile_parser = subparsers.add_parser('paramfile', help='Handle param files')
-        paramfile_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output')
-        paramfile_parser.add_argument('--upload', nargs='+', help='Upload all parameters in a file')
-        paramfile_parser.add_argument('--verify', nargs='+', help='Verify parameters in a file')
+        paramfile_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output.')
+        paramfile_parser.add_argument('--note', default='', help='Add note to downloaded parameters file.')
+        paramfile_parser.add_argument('--save-all', help='Save all parameters to file.')
+        paramfile_parser.add_argument('--upload', nargs='+', help='Upload all parameters in a file.')
+        paramfile_parser.add_argument('--verify', nargs='+', help='Verify parameters in a file.')
 
         if len(argv) == 1:
             parser.print_help()
@@ -128,6 +130,21 @@ class AMavlinkCLI(AMavlinkDefaultObject):
                         return 1
                     param_counter += 1
             print('{} params verified.'.format(param_counter))
+        elif args.save_all is not None:
+            param_path = args.save_all
+
+            def download_params_progress(actual_param, total_params):
+                if actual_param % 10 == 0:
+                    print('Downloading {} of {} parameters.'.format(actual_param, total_params))
+
+            all_params = self._amavlink.param.get_all(progress_function=download_params_progress)
+            print('{} parameters downloaded.'.format(len(all_params)))
+            param_file = AMavlinkParamFile(param_path)
+            param_file.add_parameters(all_params)
+            if args.note is not None:
+                param_file.add_note(args.note)
+            param_file.write()
+            print('All parameters written to {}.'.format(param_path))
         else:
             raise AMavlinkCLIParseError()
         return 0

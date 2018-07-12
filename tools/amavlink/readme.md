@@ -45,6 +45,12 @@ Verify parameters from [PARAM.FILE](doc/param_file.md):
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --verify /params/PARAM.FILE
 ```
 
+Download all parameters to a file in the local directory.
+
+```bash
+
+```
+
 ### Debug output
 
 By adding ```--debug``` as command parameter the debug output is enabled.

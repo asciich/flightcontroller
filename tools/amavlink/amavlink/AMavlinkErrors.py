@@ -50,5 +50,9 @@ class AMavlinkParamFileDelimiterNotFoundInLineError(AMavLinkError):
     pass
 
 
+class AMavlinkParamFileWriteEmptyFileError(AMavLinkError):
+    pass
+
+
 class AMavlinClearRecvBufferError(AMavLinkError):
     pass

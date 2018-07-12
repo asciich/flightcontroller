@@ -17,9 +17,15 @@ class TestAMavlinkMessages(object):
             expected_error_object = AMavlinkMessageNotReceivedError
         else:
             expected_error_object = Exception
-        amavlink.message.clear_recv_buffer()
-        with pytest.raises(expected_error_object):
-            amavlink.message.get()
+        for i in range(3):
+            # Since this test case relies on no messages sent in between,
+            # it is repeated 3 times.
+            amavlink.message.clear_recv_buffer()
+            try:
+                amavlink.message.get()
+            except expected_error_object:
+                return
+        assert False
 
     @pytest.mark.xfail(reason='TODO implement')
     @pytest.mark.parametrize('timeout', [
