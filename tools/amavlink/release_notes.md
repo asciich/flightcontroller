@@ -2,6 +2,8 @@
 
 ## v 0.07
 
+* ```--save-all``` parameters as param-file.
+* Write parameter files.
 * Parameters:
     * Added get_number_of_params.
     * Get parameters by index.

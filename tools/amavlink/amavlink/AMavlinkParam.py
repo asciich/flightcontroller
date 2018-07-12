@@ -25,7 +25,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
                 param_message=self._get_param_message(param_index=param_index, clear_recv_buffer=clear_recv_buffer))
         else:
             raise AMavlinkParamNotReceiveError('Param not specified')
-        self.logger.info('Get param "{}" requested'.format(param_name))
+        self.logger.info('Get param "{}", index="{}" requested'.format(param_name, param_index))
         return param
 
     def get_all(self, progress_function=None):

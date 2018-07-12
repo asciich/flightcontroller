@@ -1,6 +1,7 @@
 import pytest
 
 from AMavlinkCLI import AMavlinkCLI
+from AMavlinkPramFile import AMavlinkParamFile
 
 
 @pytest.mark.usefixtures("arducopter_sitl")
@@ -139,6 +140,38 @@ class TestAMavlinkCLI(object):
     @pytest.mark.xfail(reason='TODO implement')
     def test_verify_params_from_multible_files_fails(self, amavlink_cli):
         assert False
+
+    def test_save_all_parameters_to_file(self, amavlink, amavlink_cli, tmpdir, capsys):
+        param_path = tmpdir.mkdir('param_files').join('all_params.param').strpath
+        param_name = 'CH7_OPT'
+        param_value = 9.0
+        note_str = 'Automated test for downloading all parameters as file'
+
+        amavlink.param.set(param_name, param_value)
+        assert param_value == amavlink.param.get_value(param_name)
+
+        amavlink_cli.main(['paramfile', '--save-all', param_path, '--note', note_str])
+        with open(param_path) as f:
+            param_file_content = f.read()
+        param_file_lines = param_file_content.splitlines()
+
+        n_params = amavlink.param.get_number_of_params()
+        n_headers = 3
+        assert n_params + n_headers == len(param_file_lines)
+
+        param_file = AMavlinkParamFile(param_path)
+        param_file.read()
+
+        assert 907 == len(param_file)
+        assert float(param_value) == float(param_file[param_name])
+
+        expected_text = [
+            'All parameters written to {}.'.format(param_path),
+            'Downloading 10 of 907 parameters.',
+            'Downloading 900 of 907 parameters.',
+            '907 parameters downloaded.',
+        ]
+        self._assert_text_in_output(capsys, expected_stdout=expected_text)
 
     def test_reset_eeprom(self, amavlink, amavlink_cli, capsys):
 
