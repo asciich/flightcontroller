@@ -46,11 +46,12 @@ docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlin
 ```
 
 Download all parameters to a file in the local directory.
+The ```--note``` parameter is optional.
 
 ```bash
-
+docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --save-all /params/download2.params --note 'Download current Ardupilot configuration'"
 ```
-
+ 
 ### Debug output
 
 By adding ```--debug``` as command parameter the debug output is enabled.
