@@ -27,15 +27,14 @@ class TestAMavlinkMessages(object):
                 return
         assert False
 
-    @pytest.mark.xfail(reason='TODO implement')
     @pytest.mark.parametrize('timeout', [
-        0.5,
         1,
         1.5
     ])
-    def test_get_timeout(self, amavlink, timeout):
+    def test_get_messages_timeout(self, amavlink, timeout):
         type = 'NONEXISTING_PACKAGE_TYPE'
-        relative_error_allowed = 0.01
+        relative_error_allowed = 0.1
+        amavlink.message.clear_recv_buffer()
         t_start = time.time()
         amavlink.message.get(type=type, timeout=timeout, blocking=True)
         elapsed_time = time.time() - t_start

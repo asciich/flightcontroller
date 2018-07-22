@@ -1,8 +1,12 @@
 # AMavlink Release Notes
 
+## v 0.08 (not released yet)
+
+* 
+
 ## v 0.07
 
-* ```--save-all``` parameters as param-file.
+* ```--save-all``` stores all parameters as param-file.
 * Write parameter files.
 * Parameters:
     * Added get_number_of_params.

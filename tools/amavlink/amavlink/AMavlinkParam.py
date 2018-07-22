@@ -139,3 +139,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
             raise AMavlinkParamNotReceiveError('param name: {}'.format(param_name))
         self.logger.debug('AMavlinkParam: Received message to get param {}: {}'.format(param_name, param_message))
         return param_message
+
+    def _send_request_for_param(self, param_name):
+        mavutil = self._amavlink.get_mavutil()
+        mavutil.param_fetch_one(param_name)
