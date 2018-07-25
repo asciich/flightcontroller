@@ -28,7 +28,7 @@ class SitlContainer(object):
         self.run()
 
     def run(self):
-        image = 'asciich/ardupilot_sitl'
+        image = 'asciich/ardupilot_sitl:3.5.7'
         self._container = self._client.containers.run(image,
                                                       self._container_command,
                                                       detach=True,

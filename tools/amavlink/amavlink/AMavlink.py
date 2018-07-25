@@ -10,7 +10,9 @@ from AMavlinkHeartbeat import AMavlinkHeartbeat
 from AMavlinkLocation import AMavlinkLocation
 from AMavlinkMessage import AMavlinkMessage
 from AMavlinkParam import AMavlinkParam
+from AMavlinkRCInput import AMavlinkRCInput
 from AMavlinkSystem import AMavlinkSystem
+from AMavlinkTune import AMavlinkTune
 
 
 class AMavlink(AMavlinkDefaultObject):
@@ -33,7 +35,9 @@ class AMavlink(AMavlinkDefaultObject):
         self.location = AMavlinkLocation(self)
         self.message = AMavlinkMessage(self)
         self.param = AMavlinkParam(self)
+        self.rcinput = AMavlinkRCInput(self)
         self.system = AMavlinkSystem(self)
+        self.tune = AMavlinkTune(self)
 
     def close(self):
         self._mavutil.close()
