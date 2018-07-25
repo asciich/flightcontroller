@@ -6,6 +6,8 @@ Simple tool to communicate with vehicles using MAVLink.
 
 **IMPORTANT: Very early development state**
 
+**IMPORTANT: Developent and tested only against arducopter 3.5.7**
+
 **IMPORTANT: Currently only available for Python2 since pymavlink does not support Python3**
 
 ## Connect to flightcontroller/ vehicle

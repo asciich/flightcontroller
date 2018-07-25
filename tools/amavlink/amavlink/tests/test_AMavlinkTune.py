@@ -2,6 +2,7 @@ import pytest
 
 
 # TODO enalbe again @pytest.mark.usefixtures("arducopter_sitl")
+import time
 class TestAMavlinkTune(object):
 
     def test_enable_and_disable_tune_knop(self, amavlink):
@@ -14,32 +15,38 @@ class TestAMavlinkTune(object):
         amavlink.tune.disable()
         assert 0 == amavlink.param.get_value(param_name='TUNE')
 
-    @pytest.mark.xfail(reason='TODO implement')
+
     def test_tune_rate_roll_pitch_kp(self, amavlink):
+        ATC_RAT_RLL_P_default_value = 0.135
+        ATC_RAT_RLL_P_tune_min = ATC_RAT_RLL_P_default_value * 0.8
+        ATC_RAT_RLL_P_tune_max = ATC_RAT_RLL_P_default_value * 1.2
+        amavlink.param.set('ATC_RAT_RLL_P', ATC_RAT_RLL_P_default_value)
+
         amavlink.tune.manual_tuning(amavlink.tune.RATEROLL_PITCHKP)
-        # TODO assert tune hight
-        # TODO assert tune low
+        expected_tune_range = [
+            ATC_RAT_RLL_P_tune_min,
+            ATC_RAT_RLL_P_tune_max
+        ]
+        tune_range = amavlink.tune.get_tune_range()
+        for i in range(len(expected_tune_range)):
+            assert amavlink.param.compare_values_equal(expected_tune_range[i], tune_range[i])
+
+        tune_values = {
+            1000: ATC_RAT_RLL_P_tune_min,
+            1500: ATC_RAT_RLL_P_default_value,
+            2000: ATC_RAT_RLL_P_tune_max,
+        }
+
+        for pwm_value in tune_values:
+            self._set_tune_knob_pwm(amavlink, pwm_value=pwm_value)
+            expected_tune_value = tune_values[pwm_value]
+            time.sleep(0.5)
+            tune_value = amavlink.tune.get_actual_tune_value()
+            assert amavlink.param.compare_values_equal(expected_tune_value, tune_value)
+
 
         # TODO repeat twice to make sure the high and low value do not depend on alredy tuned values
 
-        # RC_CHANNELS_RAW
-        # RC_CHANNELS
 
-# NEED TO PARSE THE RC CHANNEL AND RC_CHANNELS_RAW VALUES:
-
-# Traceback (most recent call last):
-#   File "/usr/bin/amavlink", line 11, in <module>
-#     load_entry_point('amavlink==0.7', 'console_scripts', 'amavlink')()
-#   File "/usr/lib/python2.7/site-packages/amavlink/AMavlinkCLI.py", line 168, in main
-#     return amavlink_cli.main(sys.argv[1:])
-#   File "/usr/lib/python2.7/site-packages/amavlink/AMavlinkCLI.py", line 54, in main
-#     return self._run_param(args)
-#   File "/usr/lib/python2.7/site-packages/amavlink/AMavlinkCLI.py", line 94, in _run_param
-#     param_value = self._amavlink.param.get_value(param_name=param_name)
-#   File "/usr/lib/python2.7/site-packages/amavlink/AMavlinkParam.py", line 47, in get_value
-#     param_value = self.get(param_name=param_name).value
-#   File "/usr/lib/python2.7/site-packages/amavlink/AMavlinkParameter.py", line 17, in value
-#     self._value = self._param_message.param_value
-# AttributeError: 'MAVLink_rc_channels_raw_message' object has no attribute 'param_value'
-# / #
-#
+    def _set_tune_knob_pwm(self, amavlink, pwm_value):
+        amavlink.rcinput.override(channel=6, pwm_value=pwm_value)

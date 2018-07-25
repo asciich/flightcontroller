@@ -19,6 +19,14 @@ class AMavlinkTune(AMavlinkDefaultObject):
     def disable(self):
         self._set_tune_param(0)
 
+    def get_actual_tune_value(self):
+        return self._amavlink.param.get_value('ATC_RAT_RLL_P')
+
+    def get_tune_range(self):
+        tune_low = self._amavlink.param.get_value(param_name='TUNE_LOW') / 1000.0
+        tune_high = self._amavlink.param.get_value(param_name='TUNE_HIGH') / 1000.0
+        return [tune_low, tune_high]
+
     def manual_tuning(self, tune_parameter):
         self._set_tune_limit(modify_param_name='ATC_RAT_RLL_P', percent=20)
         self._set_tune_param(4)

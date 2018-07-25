@@ -33,7 +33,7 @@ class TestAMavlinkMessages(object):
     ])
     def test_get_messages_timeout(self, amavlink, timeout):
         type = 'NONEXISTING_PACKAGE_TYPE'
-        relative_error_allowed = 0.1
+        relative_error_allowed = 0.2
         amavlink.message.clear_recv_buffer()
         t_start = time.time()
         amavlink.message.get(type=type, timeout=timeout, blocking=True)

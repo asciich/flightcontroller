@@ -45,7 +45,7 @@ class TestAMavlinkParam(object):
         ('SYSID_SW_TYPE', 1),
         ('CAM_SERVO_OFF', 100),
         ('INS_GYRO_FILTER', 200),
-        ('RC8_MIN5', 800),
+        ('RC8_MIN', 800),
         ('VISO_ORIENT', 849),
     ])
     def test_get_param_by_index(self, amavlink, param_name, param_index):
