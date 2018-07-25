@@ -68,3 +68,6 @@ class AMavlinkRCChannelInvalid(AMavLinkError):
 
 class AMavlinkRCOverrideError(AMavLinkError):
     pass
+
+class AmavlinkUnknownTuneParameter(AMavLinkError):
+    pass
