@@ -3,8 +3,6 @@ import pytest
 
 # TODO enalbe again @pytest.mark.usefixtures("arducopter_sitl")
 import time
-
-
 class TestAMavlinkTune(object):
 
     def test_enable_and_disable_tune_knop(self, amavlink):
@@ -16,6 +14,7 @@ class TestAMavlinkTune(object):
 
         amavlink.tune.disable()
         assert 0 == amavlink.param.get_value(param_name='TUNE')
+
 
     def test_tune_rate_roll_pitch_kp(self, amavlink):
         ATC_RAT_RLL_P_default_value = 0.135
