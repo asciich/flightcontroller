@@ -56,3 +56,15 @@ class AMavlinkParamFileWriteEmptyFileError(AMavLinkError):
 
 class AMavlinClearRecvBufferError(AMavLinkError):
     pass
+
+
+class AMavlinkTuneUnableToSetTuneKnob(AMavLinkError):
+    pass
+
+
+class AMavlinkRCChannelInvalid(AMavLinkError):
+    pass
+
+
+class AMavlinkRCOverrideError(AMavLinkError):
+    pass

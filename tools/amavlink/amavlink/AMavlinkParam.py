@@ -97,6 +97,12 @@ class AMavlinkParam(AMavlinkDefaultObject):
         else:
             raise Exception('Unknown type for comparison')
 
+    def send_request_for_param(self, param_name, wait_heartbeat=True):
+        if wait_heartbeat:
+            self._amavlink.heartbeat.wait_if_target_unknown()
+        mavutil = self._amavlink.get_mavutil()
+        mavutil.param_fetch_one(param_name)
+
     def _float_compare(self, val1, val2, allow_relative_error=1e-7):
         if float(val1) == float(val2):
             return True
@@ -126,7 +132,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
 
         for i in range(self.retries):
             try:
-                mavutil.param_fetch_one(param_name)
+                self.send_request_for_param(param_name=param_name)
                 param_message = self._amavlink.message.get(strmatch=strmatch, blocking=True)
             except AMavlinkMessageNotReceivedError:
                 param_message = None
@@ -139,7 +145,3 @@ class AMavlinkParam(AMavlinkDefaultObject):
             raise AMavlinkParamNotReceiveError('param name: {}'.format(param_name))
         self.logger.debug('AMavlinkParam: Received message to get param {}: {}'.format(param_name, param_message))
         return param_message
-
-    def _send_request_for_param(self, param_name):
-        mavutil = self._amavlink.get_mavutil()
-        mavutil.param_fetch_one(param_name)

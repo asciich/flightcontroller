@@ -42,11 +42,11 @@ class TestAMavlinkParam(object):
 
     @pytest.mark.parametrize('param_name,param_index', [
         ('SYSID_SW_MREV', 0),
-        ('SYSID_THISMAV', 1),
-        ('LGR_STARTUP', 100),
-        ('INS_POS2_Y', 200),
-        ('FHLD_XY_IMAX', 900),
-        ('FOLL_ENABLE', 906)
+        ('SYSID_SW_TYPE', 1),
+        ('CAM_SERVO_OFF', 100),
+        ('INS_GYRO_FILTER', 200),
+        ('RC8_MIN', 800),
+        ('VISO_ORIENT', 849),
     ])
     def test_get_param_by_index(self, amavlink, param_name, param_index):
         assert param_name == amavlink.param.get(param_index=param_index).name
@@ -111,7 +111,7 @@ class TestAMavlinkParam(object):
         assert equal == amavlink.param.compare_values_equal(val1, val2)
 
     def test_get_number_of_params(self, amavlink):
-        assert 907 == amavlink.param.get_number_of_params()
+        assert 850 == amavlink.param.get_number_of_params()
 
     def test_get_all_params(self, amavlink, capsys):
         def progress_function(actual_param, total_params):
@@ -123,11 +123,11 @@ class TestAMavlinkParam(object):
         amavlink.param.set(param_name, param_value)
         all_params = amavlink.param.get_all(progress_function=progress_function)
         assert isinstance(all_params, dict)
-        assert 907 == len(all_params)
+        assert 850 == len(all_params)
         assert param_value == all_params[param_name].value
 
         captured = capsys.readouterr()
         stdout = captured.out.decode()
-        assert 'Downloaded 0 of 907 parameters' not in stdout
-        for i in range(10, 907, 10):
-            assert 'Downloaded {} of 907 parameters'.format(i) in stdout
+        assert 'Downloaded 0 of 850 parameters' not in stdout
+        for i in range(10, 850, 10):
+            assert 'Downloaded {} of 850 parameters'.format(i) in stdout

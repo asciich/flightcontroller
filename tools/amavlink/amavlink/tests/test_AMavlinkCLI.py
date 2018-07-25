@@ -162,14 +162,14 @@ class TestAMavlinkCLI(object):
         param_file = AMavlinkParamFile(param_path)
         param_file.read()
 
-        assert 907 == len(param_file)
+        assert 850 == len(param_file)
         assert float(param_value) == float(param_file[param_name])
 
         expected_text = [
             'All parameters written to {}.'.format(param_path),
-            'Downloading 10 of 907 parameters.',
-            'Downloading 900 of 907 parameters.',
-            '907 parameters downloaded.',
+            'Downloading 10 of 850 parameters.',
+            'Downloading 800 of 850 parameters.',
+            '850 parameters downloaded.',
         ]
         self._assert_text_in_output(capsys, expected_stdout=expected_text)
 

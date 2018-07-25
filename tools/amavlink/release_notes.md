@@ -2,7 +2,10 @@
 
 ## v 0.08 (not released yet)
 
-* 
+* Support for manual trimming.
+* Module to handle RC-input values.
+* Use ```asciich/ardupilot_sitl:3.5.7``` for testing.
+* Enabled get message timeout tests.
 
 ## v 0.07
 
