@@ -1,26 +1,55 @@
 import time
 
 from AMavlinkDefaultObject import AMavlinkDefaultObject
-from AMavlinkErrors import AMavlinkTuneUnableToSetTuneKnob
+from AMavlinkErrors import AMavlinkTuneUnableToSetTuneKnob, AmavlinkUnknownTuneParameter
 
 
 class AMavlinkTune(AMavlinkDefaultObject):
-    RATEROLL_PITCHKP = 'RATEROLL_PITCHKP'
+
+    RATEROLL_PITCH_KP = 'RATEROLL_PITCH_KP'
+    RATEROLL_PITCH_KI = 'RATEROLL_PITCH_KI'
+    RATEROLL_PITCH_KD = 'RATEROLL_PITCH_KD'
+
+
+    TUNING_DISABLED = 0
 
     def __init__(self, amavlink):
         super(AMavlinkTune, self).__init__(amavlink)
         self._amavlink = amavlink
         self._tuning_parameters = {
-            self.RATEROLL_PITCHKP: {
-                'modify_param_name': 'ATC_RAT_RLL_P'
+            self.RATEROLL_PITCH_KP: {
+                'tune_param_name': 'ATC_RAT_RLL_P',
+                'tune_value': 4
+            },
+            self.RATEROLL_PITCH_KI: {
+                'tune_param_name': 'ATC_RAT_RLL_I',
+                'tune_value': 5
+            },
+            self.RATEROLL_PITCH_KD: {
+                'tune_param_name': 'ATC_RAT_RLL_D',
+                'tune_value': 21,
             }
         }
+        self._actual_tuning_parameter = None
 
     def disable(self):
+        self._actual_tuning_parameter = None
         self._set_tune_param(0)
 
+    def get_actual_tune_param_value(self):
+        if self._actual_tuning_parameter is None:
+            return None
+        else:
+            return self._tuning_parameters[self._actual_tuning_parameter]['tune_value']
+
+    def get_actual_tune_param_name(self):
+        if self._actual_tuning_parameter is None:
+            return None
+        else:
+            return self._tuning_parameters[self._actual_tuning_parameter]['tune_param_name']
+
     def get_actual_tune_value(self):
-        return self._amavlink.param.get_value('ATC_RAT_RLL_P')
+        return self._amavlink.param.get_value(self.get_actual_tune_param_name())
 
     def get_tune_range(self):
         tune_low = self._amavlink.param.get_value(param_name='TUNE_LOW') / 1000.0
@@ -28,8 +57,14 @@ class AMavlinkTune(AMavlinkDefaultObject):
         return [tune_low, tune_high]
 
     def manual_tuning(self, tune_parameter):
-        self._set_tune_limit(modify_param_name='ATC_RAT_RLL_P', percent=20)
-        self._set_tune_param(4)
+        if self._amavlink.param.get_value(param_name='TUNE') != self.TUNING_DISABLED:
+            self.disable()
+            time.sleep(1)
+        if not tune_parameter in self._tuning_parameters:
+            raise AmavlinkUnknownTuneParameter(tune_parameter)
+        self._actual_tuning_parameter = tune_parameter
+        self._set_tune_limit(tune_param_name=self.get_actual_tune_param_name(), percent=20)
+        self._set_tune_param(self.get_actual_tune_param_value())
 
     def _set_tune_param(self, tune_value):
         tune_value = int(tune_value)
@@ -41,8 +76,8 @@ class AMavlinkTune(AMavlinkDefaultObject):
             time.sleep(self.retry_delay)
         raise AMavlinkTuneUnableToSetTuneKnob()
 
-    def _set_tune_limit(self, modify_param_name, percent):
-        actual_value = self._amavlink.param.get_value(modify_param_name)
+    def _set_tune_limit(self, tune_param_name, percent):
+        actual_value = self._amavlink.param.get_value(tune_param_name)
         self._amavlink.param.set('TUNE_LOW', self._tune_low_value(actual_value, percent))
         self._amavlink.param.set('TUNE_HIGH', self._tune_high_value(actual_value, percent))
 
