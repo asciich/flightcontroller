@@ -4,6 +4,8 @@ import time
 
 import pytest
 
+from AMavlinkCLI import AMavlinkCLI
+
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from AMavlink import AMavlink
@@ -68,6 +70,11 @@ def amavlink():
     mavlink = AMavlink(port=14550)
     yield mavlink
     mavlink.close()
+
+
+@pytest.fixture
+def amavlink_cli():
+    return AMavlinkCLI()
 
 
 @pytest.fixture

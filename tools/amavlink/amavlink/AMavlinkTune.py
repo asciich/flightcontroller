@@ -5,11 +5,9 @@ from AMavlinkErrors import AMavlinkTuneUnableToSetTuneKnob, AmavlinkUnknownTuneP
 
 
 class AMavlinkTune(AMavlinkDefaultObject):
-
-    RATEROLL_PITCH_KP = 'RATEROLL_PITCH_KP'
-    RATEROLL_PITCH_KI = 'RATEROLL_PITCH_KI'
-    RATEROLL_PITCH_KD = 'RATEROLL_PITCH_KD'
-
+    RATEROLL_PITCH_KP = 'RATE_ROLL_PITCH_KP'
+    RATEROLL_PITCH_KI = 'RATE_ROLL_PITCH_KI'
+    RATEROLL_PITCH_KD = 'RATE_ROLL_PITCH_KD'
 
     TUNING_DISABLED = 0
 
@@ -31,10 +29,12 @@ class AMavlinkTune(AMavlinkDefaultObject):
             }
         }
         self._actual_tuning_parameter = None
+        self._original_value = None
 
     def disable(self):
-        self._actual_tuning_parameter = None
         self._set_tune_param(0)
+        self._actual_tuning_parameter = None
+        self._original_value = None
 
     def get_actual_tune_param_value(self):
         if self._actual_tuning_parameter is None:
@@ -50,6 +50,12 @@ class AMavlinkTune(AMavlinkDefaultObject):
 
     def get_actual_tune_value(self):
         return self._amavlink.param.get_value(self.get_actual_tune_param_name())
+
+    def get_original_value(self):
+        return self._original_value
+
+    def get_tune_knob_pwm(self):
+        return self._amavlink.rcinput.get_raw(channel=6)
 
     def get_tune_range(self):
         tune_low = self._amavlink.param.get_value(param_name='TUNE_LOW') / 1000.0
@@ -77,9 +83,9 @@ class AMavlinkTune(AMavlinkDefaultObject):
         raise AMavlinkTuneUnableToSetTuneKnob()
 
     def _set_tune_limit(self, tune_param_name, percent):
-        actual_value = self._amavlink.param.get_value(tune_param_name)
-        self._amavlink.param.set('TUNE_LOW', self._tune_low_value(actual_value, percent))
-        self._amavlink.param.set('TUNE_HIGH', self._tune_high_value(actual_value, percent))
+        self._original_value = self._amavlink.param.get_value(tune_param_name)
+        self._amavlink.param.set('TUNE_LOW', self._tune_low_value(self._original_value, percent))
+        self._amavlink.param.set('TUNE_HIGH', self._tune_high_value(self._original_value, percent))
 
     def _tune_low_value(self, actual_value, percent):
         limit = actual_value * (1.0 - float(percent) / 100.0)

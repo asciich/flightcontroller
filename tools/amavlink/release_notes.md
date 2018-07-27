@@ -1,8 +1,11 @@
 # AMavlink Release Notes
 
-## v 0.08 (not released yet)
+## v 0.08
 
-* Support for manual trimming.
+* Support for manual trimming:
+    * ```--rate-roll-pitch-kp```
+    * ```--rate-roll-pitch-ki```
+    * ```--rate-roll-pitch-kd```
 * Module to handle RC-input values.
 * Use ```asciich/ardupilot_sitl:3.5.7``` for testing.
 * Enabled get message timeout tests.

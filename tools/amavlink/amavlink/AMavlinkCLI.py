@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+import time
 
 from AMavlink import AMavlink
 from AMavlinkDefaultObject import AMavlinkDefaultObject
@@ -39,13 +40,26 @@ class AMavlinkCLI(AMavlinkDefaultObject):
         paramfile_parser.add_argument('--upload', nargs='+', help='Upload all parameters in a file.')
         paramfile_parser.add_argument('--verify', nargs='+', help='Verify parameters in a file.')
 
+        tune_parser = subparsers.add_parser('tune', help='Handle manual tuning with channel6 knob.')
+        tune_parser.add_argument('--debug', default=False, action='store_true', help='Enable debug output.')
+        tune_parser.add_argument('--disable', default=False, action='store_true', help='Disable manual tuning.')
+        tune_parser.add_argument('--rate-roll-pitch-kp', default=False, action='store_true',
+                                 help='Tune "Rate Roll/Pitch kP"')
+        tune_parser.add_argument('--rate-roll-pitch-ki', default=False, action='store_true',
+                                 help='Tune "Rate Roll/Pitch kI"')
+        tune_parser.add_argument('--rate-roll-pitch-kd', default=False, action='store_true',
+                                 help='Tune "Rate Roll/Pitch kD"')
+        tune_parser.add_argument('--n_refresh', default=0,
+                                 help='Number of refreshes of actual tuning state. 0 means until AMavlink is stopped')
+
         if len(argv) == 1:
             parser.print_help()
             exit(2)
 
         args = parser.parse_args(args=argv)
         self._amavlink = AMavlink(debug_log_to_console=args.debug)
-        self._amavlink.logger.debug('AMavlinkCLI parameters {}'.format(argv))
+        self.logger = self._amavlink.logger
+        self.logger.debug('AMavlinkCLI parameters {}'.format(argv))
         if argv[0] == 'eeprom':
             return self._run_eeprom(args)
         elif argv[0] == 'messages':
@@ -54,6 +68,8 @@ class AMavlinkCLI(AMavlinkDefaultObject):
             return self._run_param(args)
         elif argv[0] == 'paramfile':
             return self._run_paramfile(args)
+        elif argv[0] == 'tune':
+            return self._run_tune(args)
         else:
             AMavlinkCLIParseError()
         return 0
@@ -149,9 +165,73 @@ class AMavlinkCLI(AMavlinkDefaultObject):
             raise AMavlinkCLIParseError()
         return 0
 
+    def _run_tune(self, args):
+        n_refresh = args.n_refresh
+        if args.disable:
+            self._amavlink.tune.disable()
+            print('Manual tuning disalbed')
+        elif args.rate_roll_pitch_kp:
+            self._tune_param(self._amavlink.tune.RATEROLL_PITCH_KP, n_refresh)
+        elif args.rate_roll_pitch_ki:
+            self._tune_param(self._amavlink.tune.RATEROLL_PITCH_KI, n_refresh)
+        elif args.rate_roll_pitch_kd:
+            self._tune_param(self._amavlink.tune.RATEROLL_PITCH_KD, n_refresh)
+        else:
+            raise AMavlinkCLIParseError('No action for manual tuning defined')
+        return 0
+
     def _set_param(self, param_name, param_value):
         self._amavlink.param.set(param_name, param_value)
         print('Set param "{}" = {}'.format(param_name, param_value))
+
+    def _tune_param(self, tune_parameter, n_refresh):
+        n_refresh = int(n_refresh)
+        if n_refresh == 0:
+            n_refresh = -1
+
+        print('Start tuning {}'.format(tune_parameter))
+        self._amavlink.tune.manual_tuning(tune_parameter)
+
+        error_counter = 0
+        retry_delay = 1.0
+        while n_refresh != 0:
+            try:
+                t_start = time.time()
+                tune = self._amavlink.tune
+                original_value = tune.get_original_value()
+                actual_value = tune.get_actual_tune_value()
+                param_name = tune.get_actual_tune_param_name()
+                range = tune.get_tune_range()
+                tune_knob_pwm = tune.get_tune_knob_pwm()
+                error_counter = 0
+
+                tune_msg = 'Tune {}; actual_value = {}; tune_knob_pwm = {}; original_value = {}; range = {}'.format(
+                    param_name, actual_value, tune_knob_pwm, original_value, range)
+                self.logger.info(tune_msg)
+                print(tune_msg)
+                t_refresh = time.time() - t_start
+                if t_refresh > retry_delay:
+                    self.logger.warning(
+                        '_tune_param refresh takes longer ({}s) than retry_delay={}s'.format(t_refresh, retry_delay))
+                    t_wait = 0.0
+                else:
+                    t_wait = retry_delay - t_refresh
+
+            except Exception as e:
+                self.logger.warning('Refresh tune parameter failed with exception: {}'.format(e))
+                print('Refresh failed')
+                t_wait = retry_delay / 3
+
+                if error_counter == 3:
+                    n_refresh -= 1
+                    error_counter = 0
+                else:
+                    error_counter += 1
+                    n_refresh += 1
+
+            if n_refresh > 0:
+                n_refresh -= 1
+            time.sleep(t_wait)
 
     def _verify_param(self, param_name, param_value):
         read_value = self._amavlink.param.get_value(param_name=param_name)
