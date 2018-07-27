@@ -25,12 +25,12 @@ AMavlink expects a with UDP-Port 14551 open on the same machine and **only one f
 
 Get single parameter (CH7_OPT):
 ```bash
-docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink param --get CH7_OPT"
+docker run --net=host --rm -it asciich/amavlink sh -c "amavlink param --get CH7_OPT"
 ```
 
 Set single parameter (CH7_OPT to 8):
 ```bash
-docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink param --set CH7_OPT 8
+docker run --net=host --rm -it asciich/amavlink sh -c "amavlink param --set CH7_OPT 8
 ```
 
 ### Parameter files
@@ -54,6 +54,28 @@ The ```--note``` parameter is optional.
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --save-all /params/download2.params --note 'Download current Ardupilot configuration'"
 ```
  
+### Manually tune parameters
+
+The ```tune``` subcommand allows manuall tuning using the channel 6 tuning knob.
+
+List tuneable parameters:
+
+```bash
+docker run --net=host --rm -it asciich/amavlink sh -c "amavlink tune --help"
+```
+  
+To tune ```Rate Roll/Pitch kP``` use:
+
+```bash
+docker run --net=host --rm -it asciich/amavlink sh -c "amavlink tune --rate-roll-pitch-kp"
+```
+
+Disable tuning
+
+```bash
+docker run --net=host --rm -it asciich/amavlink sh -c "amavlink tune --disable"
+```
+
 ### Debug output
 
 By adding ```--debug``` as command parameter the debug output is enabled.
