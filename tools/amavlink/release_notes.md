@@ -6,7 +6,7 @@
     * ```--rate-roll-pitch-kp```
     * ```--rate-roll-pitch-ki```
     * ```--rate-roll-pitch-kd```
-* Module to handle RC-input values.
+* Module to handle RC-input values. Not accessible trough CLI.
 * Use ```asciich/ardupilot_sitl:3.5.7``` for testing.
 * Enabled get message timeout tests.
 
