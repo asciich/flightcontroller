@@ -1,15 +1,11 @@
 import pytest
 
-from AMavlinkCLI import AMavlinkCLI
 from AMavlinkPramFile import AMavlinkParamFile
+from HelperFunctions import assert_text_in_output
 
 
 @pytest.mark.usefixtures("arducopter_sitl")
 class TestAMavlinkCLI(object):
-
-    @pytest.fixture
-    def amavlink_cli(self):
-        return AMavlinkCLI()
 
     @pytest.fixture
     def param_channels_file(self, tmpdir):
@@ -25,17 +21,6 @@ class TestAMavlinkCLI(object):
         captured_output = capsys.readouterr()
         assert 0 == len(captured_output.out)
         assert 'usage:' in captured_output.err.decode()
-
-    def _assert_text_in_output(self, capsys, expected_stdout, expected_stderr=[], count_in_stdout=[]):
-        captured = capsys.readouterr()
-        stdout = captured.out.decode()
-        stderr = captured.err.decode()
-        for text in expected_stdout:
-            assert text in stdout
-        for count_stdout in count_in_stdout:
-            assert count_stdout[1] == stdout.count(count_stdout[0])
-        for text in expected_stderr:
-            assert text in stderr
 
     def test_help_page_if_no_param_given(self, amavlink_cli, capsys):
         with pytest.raises(SystemExit) as system_exit:
@@ -91,7 +76,7 @@ class TestAMavlinkCLI(object):
 
         expected_text = ['2 params uploaded']
         expected_text.extend(params)
-        self._assert_text_in_output(capsys, expected_text)
+        assert_text_in_output(capsys, expected_text)
 
     @pytest.mark.xfail(reson='TODO implement')
     def test_upload_and_verify_params_from_file(self, amavlink, amavlink_cli, tmpdir, capsys):
@@ -120,7 +105,7 @@ class TestAMavlinkCLI(object):
             'CH8_OPT 8 == 8.0 verified.',
             '2 params verified',
         ]
-        self._assert_text_in_output(capsys, expected_stdout=expected_texts)
+        assert_text_in_output(capsys, expected_stdout=expected_texts)
 
     def test_verify_params_from_file_fails(self, amavlink, amavlink_cli, capsys, param_channels_file):
         amavlink.param.set('CH7_OPT', 7)
@@ -131,7 +116,7 @@ class TestAMavlinkCLI(object):
         expected_texts = [
             'CH8_OPT 8 != 7.0 verification ERROR!',
         ]
-        self._assert_text_in_output(capsys, expected_stdout=expected_texts)
+        assert_text_in_output(capsys, expected_stdout=expected_texts)
 
     @pytest.mark.xfail(reason='TODO implement')
     def test_verify_params_from_multible_files(self, amavlink_cli):
@@ -171,7 +156,7 @@ class TestAMavlinkCLI(object):
             'Downloading 800 of 850 parameters.',
             '850 parameters downloaded.',
         ]
-        self._assert_text_in_output(capsys, expected_stdout=expected_text)
+        assert_text_in_output(capsys, expected_stdout=expected_text)
 
     def test_reset_eeprom(self, amavlink, amavlink_cli, capsys):
 
@@ -181,7 +166,7 @@ class TestAMavlinkCLI(object):
             'Flightcontroller prepared for resetting EEPROM',
             'Reboot Flightcontroller to reset EEPROM'
         ]
-        self._assert_text_in_output(capsys, expected_stdout=expected_text)
+        assert_text_in_output(capsys, expected_stdout=expected_text)
         assert 0 == amavlink.param.get_value(param_name='SYSID_SW_MREV')
 
     def test_enable_debug_log_output(self, amavlink_cli, capsys):
@@ -195,7 +180,7 @@ class TestAMavlinkCLI(object):
             'AMavlinkMessage:',
             'amavlink_logger - INFO - Get param value "CH7_OPT" == ',
         ]
-        self._assert_text_in_output(capsys=capsys, expected_stdout=expected_stdout, expected_stderr=expected_stderr)
+        assert_text_in_output(capsys=capsys, expected_stdout=expected_stdout, expected_stderr=expected_stderr)
 
     def test_get_messages_strmatch(self, amavlink_cli, capsys):
         strmatch = 'GPS_RAW_INT'
@@ -209,4 +194,4 @@ class TestAMavlinkCLI(object):
         count_in_stdout = [
             (strmatch, nmsg + 1)
         ]
-        self._assert_text_in_output(capsys, expected_stdout=expected_text, count_in_stdout=count_in_stdout)
+        assert_text_in_output(capsys, expected_stdout=expected_text, count_in_stdout=count_in_stdout)

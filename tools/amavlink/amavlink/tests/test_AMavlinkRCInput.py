@@ -16,8 +16,22 @@ class TestAMavlinkRCInput(object):
         (7, 1000),
         (8, 1800),
     ])
-    def test_get_channel1_pwm(self, amavlink, channel, value):
+    def test_get_channel_pwm(self, amavlink, channel, value):
+        amavlink.rcinput.deactivate_override()
         assert value == amavlink.rcinput.get_raw(channel)
+
+    def test_deactiate_override(self, amavlink):
+        channel = 6
+        pwm_value = 2000
+
+        amavlink.rcinput.deactivate_override()
+        pwm_value_default = amavlink.rcinput.get_raw(channel=channel)
+
+        amavlink.rcinput.override(channel=channel, pwm_value=pwm_value)
+        assert pwm_value == amavlink.rcinput.get_raw(channel=channel)
+
+        amavlink.rcinput.deactivate_override()
+        assert pwm_value_default == amavlink.rcinput.get_raw(channel=channel)
 
     @pytest.mark.parametrize('channel,value', [
         (1, 1234),

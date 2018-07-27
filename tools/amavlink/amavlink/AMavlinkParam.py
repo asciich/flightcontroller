@@ -98,6 +98,7 @@ class AMavlinkParam(AMavlinkDefaultObject):
             raise Exception('Unknown type for comparison')
 
     def send_request_for_param(self, param_name, wait_heartbeat=True):
+        self.logger.debug('Send request for parameter {}'.format(param_name))
         if wait_heartbeat:
             self._amavlink.heartbeat.wait_if_target_unknown()
         mavutil = self._amavlink.get_mavutil()
