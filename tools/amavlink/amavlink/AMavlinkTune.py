@@ -5,9 +5,13 @@ from AMavlinkErrors import AMavlinkTuneUnableToSetTuneKnob, AmavlinkUnknownTuneP
 
 
 class AMavlinkTune(AMavlinkDefaultObject):
+
     RATEROLL_PITCH_KP = 'RATE_ROLL_PITCH_KP'
     RATEROLL_PITCH_KI = 'RATE_ROLL_PITCH_KI'
     RATEROLL_PITCH_KD = 'RATE_ROLL_PITCH_KD'
+
+    RATE_YAW_KP = 'RATE_YAW_KP'
+    RATE_YAW_KD = 'RATE_YAW_KD'
 
     TUNING_DISABLED = 0
 
@@ -26,7 +30,15 @@ class AMavlinkTune(AMavlinkDefaultObject):
             self.RATEROLL_PITCH_KD: {
                 'tune_param_name': 'ATC_RAT_RLL_D',
                 'tune_value': 21,
-            }
+            },
+            self.RATE_YAW_KP: {
+                'tune_param_name': 'ATC_RAT_YAW_P',
+                'tune_value': 6,
+            },
+            self.RATE_YAW_KD: {
+                'tune_param_name': 'ATC_RAT_YAW_D',
+                'tune_value': 26,
+            },
         }
         self._actual_tuning_parameter = None
         self._original_value = None

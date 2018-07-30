@@ -1,8 +1,15 @@
 # AMavlink Release Notes
 
+## v 0.09
+
+* Support for manual tuning:
+    * ```--rate-yaw-kp```
+    * ```--rate-yaw-kd```
+* Wait for SITL heartbeat before starting tests.
+
 ## v 0.08
 
-* Support for manual trimming:
+* Support for manual tuning:
     * ```--rate-roll-pitch-kp```
     * ```--rate-roll-pitch-ki```
     * ```--rate-roll-pitch-kd```

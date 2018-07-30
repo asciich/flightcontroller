@@ -59,6 +59,8 @@ class TestAMavlinkCLITune(object):
         ('--rate-roll-pitch-kp', 'RATE_ROLL_PITCH_KP', 'ATC_RAT_RLL_P'),
         ('--rate-roll-pitch-ki', 'RATE_ROLL_PITCH_KI', 'ATC_RAT_RLL_I'),
         ('--rate-roll-pitch-kd', 'RATE_ROLL_PITCH_KD', 'ATC_RAT_RLL_D'),
+        ('--rate-yaw-kp', 'RATE_YAW_KP', 'ATC_RAT_YAW_P'),
+        ('--rate-yaw-kd', 'RATE_YAW_KD', 'ATC_RAT_YAW_D'),
     ])
     def test_tune_cli_parameters_are_correct(self, amavlink, amavlink_cli, capsys, cli_parameter, tune_param,
                                              param_name):
