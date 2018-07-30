@@ -49,6 +49,10 @@ class AMavlinkCLI(AMavlinkDefaultObject):
                                  help='Tune "Rate Roll/Pitch kI"')
         tune_parser.add_argument('--rate-roll-pitch-kd', default=False, action='store_true',
                                  help='Tune "Rate Roll/Pitch kD"')
+        tune_parser.add_argument('--rate-yaw-kp', default=False, action='store_true',
+                                 help='Tune "Rate Yaw kP"')
+        tune_parser.add_argument('--rate-yaw-kd', default=False, action='store_true',
+                                 help='Tune "Rate Yaw kD"')
         tune_parser.add_argument('--n_refresh', default=0,
                                  help='Number of refreshes of actual tuning state. 0 means until AMavlink is stopped')
 
@@ -176,6 +180,10 @@ class AMavlinkCLI(AMavlinkDefaultObject):
             self._tune_param(self._amavlink.tune.RATEROLL_PITCH_KI, n_refresh)
         elif args.rate_roll_pitch_kd:
             self._tune_param(self._amavlink.tune.RATEROLL_PITCH_KD, n_refresh)
+        elif args.rate_yaw_kp:
+            self._tune_param(self._amavlink.tune.RATE_YAW_KP, n_refresh)
+        elif args.rate_yaw_kd:
+            self._tune_param(self._amavlink.tune.RATE_YAW_KD, n_refresh)
         else:
             raise AMavlinkCLIParseError('No action for manual tuning defined')
         return 0

@@ -3,8 +3,6 @@ import time
 import pytest
 
 pytest.mark.usefixtures("arducopter_sitl")
-
-
 class TestAMavlinkTune(object):
 
     def test_enable_and_disable_tune_knop(self, amavlink):
@@ -24,6 +22,8 @@ class TestAMavlinkTune(object):
         (0.1350, 'RATE_ROLL_PITCH_KP', 'ATC_RAT_RLL_P', None, None, None),
         (0.0900, 'RATE_ROLL_PITCH_KI', 'ATC_RAT_RLL_I', None, None, None),
         (0.0036, 'RATE_ROLL_PITCH_KD', 'ATC_RAT_RLL_D', 0.002, 0.004, 0.003),
+        (0.1800, 'RATE_YAW_KP', 'ATC_RAT_YAW_P', None, None, None),
+        (0.0000, 'RATE_YAW_KD', 'ATC_RAT_YAW_D', None, None, None),
     ])
     def test_tune_parameters(self, amavlink, default_value, tune_parameter, param_name, range_min, range_max,
                              range_mid):
@@ -53,6 +53,15 @@ class TestAMavlinkTune(object):
         assert amavlink.param.compare_values_equal(default_value, amavlink.tune.get_original_value())
         self._assert_tune_range(amavlink, expected_tune_range)
         self._assert_tune_knop_values(amavlink, tune_values)
+
+    @pytest.mark.xfail(reason='TODO implmenet')
+    @pytest.mark.parametrize('default_value, tune_parameter, param_name, range_min, range_max, range_mid', [
+        (0.0000, 'RATE_YAW_KD', 'ATC_RAT_YAW_D', None, None, None),
+    ])
+    def test_minimal_range(self, default_value, tune_parameter, param_name, range_min, range_max,
+                             range_mid):
+        # TODO this should give a minimal range for the parameter
+        assert False
 
     def _assert_tune_range(self, amavlink, expected_tune_range):
         tune_range = amavlink.tune.get_tune_range()

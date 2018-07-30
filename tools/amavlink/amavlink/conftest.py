@@ -49,6 +49,17 @@ class SitlContainer(object):
             else:
                 time.sleep(0.1)
 
+        amav = AMavlink(port=14550)
+        for i in range(10):
+            try:
+                amav.heartbeat.wait()
+                break
+            except:
+                time.sleep(0.5)
+        amav.heartbeat.wait()
+        amav.close()
+        return
+
 
 @pytest.fixture(scope='session')
 def arducopter_sitl():
