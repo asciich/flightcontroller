@@ -71,7 +71,7 @@ class TestAMavlinkMessages(object):
     ])
     def test_get_message_by_string_match(self, amavlink, search_str, test_timeout):
         message = amavlink.message.get_str_match(search_str=search_str, blocking=True, timeout=test_timeout)
-        assert search_str == message.get_type
+        assert search_str == message.get_type()
 
     def test_get_system_time(self, amavlink):
         message = amavlink.message.get_system_time()
