@@ -10,16 +10,29 @@
 				[
 					50,
 					45,
-					27
+					27,
+					70,
+					1,
+					0.75,
+					0,
+					0
 				],
 				[
 					50,
 					50,
-					30
+					30,
+					75,
+					1,
+					0.75,
+					0
 				],
 				[
 					72,
 					55,
+					0,
+					0,
+					1,
+					0.7,
 					0
 				],
 				[
@@ -42,8 +55,8 @@
 				"RC_RATE": 1,
 				"RC_EXPO": 0,
 				"roll_pitch_rate": 0,
-				"roll_rate": 0.7,
-				"pitch_rate": 0.7,
+				"roll_rate": 0.75,
+				"pitch_rate": 0.75,
 				"yaw_rate": 0.7,
 				"dynamic_THR_PID": 0.5,
 				"throttle_MID": 0.5,
@@ -606,16 +619,29 @@
 				[
 					42,
 					60,
-					35
+					35,
+					70,
+					1,
+					0.75,
+					0,
+					0
 				],
 				[
 					46,
 					70,
-					38
+					38,
+					75,
+					1,
+					0.75,
+					0
 				],
 				[
 					35,
 					100,
+					0,
+					0,
+					1,
+					0.7,
 					0
 				],
 				[
@@ -638,8 +664,8 @@
 				"RC_RATE": 1,
 				"RC_EXPO": 0,
 				"roll_pitch_rate": 0,
-				"roll_rate": 0.7,
-				"pitch_rate": 0.7,
+				"roll_rate": 0.75,
+				"pitch_rate": 0.75,
 				"yaw_rate": 0.7,
 				"dynamic_THR_PID": 0.5,
 				"throttle_MID": 0.5,
@@ -1076,7 +1102,7 @@
 					"adjustmentFunction": 0,
 					"auxSwitchChannelIndex": 0
 				},
-				{<<<<<<< happymodel_mobula_7_hd_rssi
+				{
 					"slotIndex": 0,
 					"auxChannelIndex": 0,
 					"range": {
@@ -1202,16 +1228,29 @@
 				[
 					42,
 					60,
-					35
+					35,
+					70,
+					1,
+					0.75,
+					0,
+					0
 				],
 				[
 					46,
 					70,
-					38
+					38,
+					75,
+					1,
+					0.75,
+					0
 				],
 				[
 					35,
 					100,
+					0,
+					0,
+					1,
+					0.7,
 					0
 				],
 				[
@@ -1234,8 +1273,8 @@
 				"RC_RATE": 1,
 				"RC_EXPO": 0,
 				"roll_pitch_rate": 0,
-				"roll_rate": 0.7,
-				"pitch_rate": 0.7,
+				"roll_rate": 0.75,
+				"pitch_rate": 0.75,
 				"yaw_rate": 0.7,
 				"dynamic_THR_PID": 0.5,
 				"throttle_MID": 0.5,
@@ -3006,7 +3045,7 @@
 		},
 		{
 			"id": 0,
-			"modeLogic": 0,<<<<<<< happymodel_mobula_7_hd_rssi
+			"modeLogic": 0,
 			"linkedTo": 0
 		},
 		{
