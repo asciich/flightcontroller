@@ -1076,7 +1076,7 @@
 					"adjustmentFunction": 0,
 					"auxSwitchChannelIndex": 0
 				},
-				{
+				{<<<<<<< happymodel_mobula_7_hd_rssi
 					"slotIndex": 0,
 					"auxChannelIndex": 0,
 					"range": {
@@ -3006,7 +3006,7 @@
 		},
 		{
 			"id": 0,
-			"modeLogic": 0,
+			"modeLogic": 0,<<<<<<< happymodel_mobula_7_hd_rssi
 			"linkedTo": 0
 		},
 		{
