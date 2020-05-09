@@ -1,0 +1,16 @@
+# Alpha 300q betaflight settings.
+
+# Receiver Settings:
+#####################################
+
+# Uart 2 is connected to the FPort. IMPORTANT: TX2 has to be connected for halfduplex communication!
+# Source: https://github.com/betaflight/betaflight/wiki/The-FrSky-FPort-Protocol
+serial 1 64 115200 57600 0 115200
+set serialrx_provider = FPORT
+set serialrx_halfduplex = ON
+set serialrx_inverted = ON
+
+# Save settings:
+save
+
+
