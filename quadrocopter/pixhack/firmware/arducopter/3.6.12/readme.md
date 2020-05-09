@@ -1,0 +1,1 @@
+[See general readme for flashing instructions.](../readme.md )

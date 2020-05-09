@@ -1,6 +1,6 @@
 {
 	"generatedBy": "10.6.0",
-	"apiVersion": "1.41.0",
+	"apiVersion": "1.42.0",
 	"profiles": [
 		{
 			"PID": {
@@ -8,18 +8,18 @@
 			},
 			"PIDs": [
 				[
-					50,
-					45,
-					27
+					42,
+					85,
+					35
 				],
 				[
-					50,
-					50,
-					30
+					46,
+					90,
+					38
 				],
 				[
-					72,
-					55,
+					30,
+					90,
 					0
 				],
 				[
@@ -42,13 +42,13 @@
 				"RC_RATE": 1,
 				"RC_EXPO": 0,
 				"roll_pitch_rate": 0,
-				"roll_rate": 0.75,
-				"pitch_rate": 0.75,
+				"roll_rate": 0.7,
+				"pitch_rate": 0.7,
 				"yaw_rate": 0.7,
-				"dynamic_THR_PID": 0.5,
+				"dynamic_THR_PID": 0.65,
 				"throttle_MID": 0.5,
 				"throttle_EXPO": 0,
-				"dynamic_THR_breakpoint": 1500,
+				"dynamic_THR_breakpoint": 1250,
 				"RC_YAW_EXPO": 0,
 				"rcYawRate": 1,
 				"rcPitchRate": 1,
@@ -135,40 +135,40 @@
 					"id": 0,
 					"auxChannelIndex": 0,
 					"range": {
-						"start": 1600,
-						"end": 2100
+						"start": 1300,
+						"end": 1700
 					}
 				},
 				{
-					"id": 35,
+					"id": 32,
 					"auxChannelIndex": 1,
 					"range": {
-						"start": 1600,
+						"start": 900,
+						"end": 1300
+					}
+				},
+				{
+					"id": 33,
+					"auxChannelIndex": 2,
+					"range": {
+						"start": 1700,
 						"end": 2100
 					}
 				},
 				{
-					"id": 0,
-					"auxChannelIndex": 0,
+					"id": 34,
+					"auxChannelIndex": 1,
 					"range": {
-						"start": 900,
-						"end": 900
+						"start": 1700,
+						"end": 2100
 					}
 				},
 				{
-					"id": 0,
-					"auxChannelIndex": 0,
+					"id": 36,
+					"auxChannelIndex": 3,
 					"range": {
-						"start": 900,
-						"end": 900
-					}
-				},
-				{
-					"id": 0,
-					"auxChannelIndex": 0,
-					"range": {
-						"start": 900,
-						"end": 900
+						"start": 1700,
+						"end": 2100
 					}
 				},
 				{
@@ -608,17 +608,17 @@
 			"PIDs": [
 				[
 					42,
-					60,
+					85,
 					35
 				],
 				[
 					46,
-					70,
+					90,
 					38
 				],
 				[
-					35,
-					100,
+					30,
+					90,
 					0
 				],
 				[
@@ -641,13 +641,13 @@
 				"RC_RATE": 1,
 				"RC_EXPO": 0,
 				"roll_pitch_rate": 0,
-				"roll_rate": 0.75,
-				"pitch_rate": 0.75,
+				"roll_rate": 0.7,
+				"pitch_rate": 0.7,
 				"yaw_rate": 0.7,
-				"dynamic_THR_PID": 0.5,
+				"dynamic_THR_PID": 0.65,
 				"throttle_MID": 0.5,
 				"throttle_EXPO": 0,
-				"dynamic_THR_breakpoint": 1500,
+				"dynamic_THR_breakpoint": 1250,
 				"RC_YAW_EXPO": 0,
 				"rcYawRate": 1,
 				"rcPitchRate": 1,
@@ -734,40 +734,40 @@
 					"id": 0,
 					"auxChannelIndex": 0,
 					"range": {
-						"start": 1600,
-						"end": 2100
+						"start": 1300,
+						"end": 1700
 					}
 				},
 				{
-					"id": 35,
+					"id": 32,
 					"auxChannelIndex": 1,
 					"range": {
-						"start": 1600,
+						"start": 900,
+						"end": 1300
+					}
+				},
+				{
+					"id": 33,
+					"auxChannelIndex": 2,
+					"range": {
+						"start": 1700,
 						"end": 2100
 					}
 				},
 				{
-					"id": 0,
-					"auxChannelIndex": 0,
+					"id": 34,
+					"auxChannelIndex": 1,
 					"range": {
-						"start": 900,
-						"end": 900
+						"start": 1700,
+						"end": 2100
 					}
 				},
 				{
-					"id": 0,
-					"auxChannelIndex": 0,
+					"id": 36,
+					"auxChannelIndex": 3,
 					"range": {
-						"start": 900,
-						"end": 900
-					}
-				},
-				{
-					"id": 0,
-					"auxChannelIndex": 0,
-					"range": {
-						"start": 900,
-						"end": 900
+						"start": 1700,
+						"end": 2100
 					}
 				},
 				{
@@ -1207,17 +1207,17 @@
 			"PIDs": [
 				[
 					42,
-					60,
+					85,
 					35
 				],
 				[
 					46,
-					70,
+					90,
 					38
 				],
 				[
-					35,
-					100,
+					30,
+					90,
 					0
 				],
 				[
@@ -1240,13 +1240,13 @@
 				"RC_RATE": 1,
 				"RC_EXPO": 0,
 				"roll_pitch_rate": 0,
-				"roll_rate": 0.75,
-				"pitch_rate": 0.75,
+				"roll_rate": 0.7,
+				"pitch_rate": 0.7,
 				"yaw_rate": 0.7,
-				"dynamic_THR_PID": 0.5,
+				"dynamic_THR_PID": 0.65,
 				"throttle_MID": 0.5,
 				"throttle_EXPO": 0,
-				"dynamic_THR_breakpoint": 1500,
+				"dynamic_THR_breakpoint": 1250,
 				"RC_YAW_EXPO": 0,
 				"rcYawRate": 1,
 				"rcPitchRate": 1,
@@ -1333,40 +1333,40 @@
 					"id": 0,
 					"auxChannelIndex": 0,
 					"range": {
-						"start": 1600,
-						"end": 2100
+						"start": 1300,
+						"end": 1700
 					}
 				},
 				{
-					"id": 35,
+					"id": 32,
 					"auxChannelIndex": 1,
 					"range": {
-						"start": 1600,
+						"start": 900,
+						"end": 1300
+					}
+				},
+				{
+					"id": 33,
+					"auxChannelIndex": 2,
+					"range": {
+						"start": 1700,
 						"end": 2100
 					}
 				},
 				{
-					"id": 0,
-					"auxChannelIndex": 0,
+					"id": 34,
+					"auxChannelIndex": 1,
 					"range": {
-						"start": 900,
-						"end": 900
+						"start": 1700,
+						"end": 2100
 					}
 				},
 				{
-					"id": 0,
-					"auxChannelIndex": 0,
+					"id": 36,
+					"auxChannelIndex": 3,
 					"range": {
-						"start": 900,
-						"end": 900
-					}
-				},
-				{
-					"id": 0,
-					"auxChannelIndex": 0,
-					"range": {
-						"start": 900,
-						"end": 900
+						"start": 1700,
+						"end": 2100
 					}
 				},
 				{
@@ -1801,9 +1801,9 @@
 		}
 	],
 	"RCMAP": [
-		1,
-		2,
 		3,
+		2,
+		1,
 		0,
 		4,
 		5,
@@ -1825,7 +1825,7 @@
 			{
 				"identifier": 0,
 				"functions": [
-					"RX_SERIAL"
+					"GPS"
 				],
 				"msp_baudrate": "115200",
 				"gps_baudrate": "57600",
@@ -1835,7 +1835,37 @@
 			{
 				"identifier": 1,
 				"functions": [
+					"RX_SERIAL"
+				],
+				"msp_baudrate": "115200",
+				"gps_baudrate": "57600",
+				"telemetry_baudrate": "AUTO",
+				"blackbox_baudrate": "115200"
+			},
+			{
+				"identifier": 2,
+				"functions": [
 					"TBS_SMARTAUDIO"
+				],
+				"msp_baudrate": "115200",
+				"gps_baudrate": "57600",
+				"telemetry_baudrate": "AUTO",
+				"blackbox_baudrate": "115200"
+			},
+			{
+				"identifier": 3,
+				"functions": [
+					"TELEMETRY_SMARTPORT"
+				],
+				"msp_baudrate": "115200",
+				"gps_baudrate": "57600",
+				"telemetry_baudrate": "AUTO",
+				"blackbox_baudrate": "115200"
+			},
+			{
+				"identifier": 5,
+				"functions": [
+					"RUNCAM_DEVICE_CONTROL"
 				],
 				"msp_baudrate": "115200",
 				"gps_baudrate": "57600",
@@ -2257,7 +2287,7 @@
 		"pitch": 0,
 		"yaw": 0
 	},
-	"CRAFT_NAME": "asciich.ch",
+	"CRAFT_NAME": "Asciich.ch",
 	"DISPLAY_NAME": "JOE PILOT",
 	"MIXER_CONFIG": {
 		"mixer": 3,
@@ -2265,25 +2295,25 @@
 	},
 	"SENSOR_CONFIG": {
 		"acc_hardware": 0,
-		"baro_hardware": 1,
-		"mag_hardware": 1
+		"baro_hardware": 0,
+		"mag_hardware": 0
 	},
 	"PID_ADVANCED_CONFIG": {
 		"gyro_sync_denom": 1,
 		"pid_process_denom": 4,
-		"use_unsyncedPwm": 0,
-		"fast_pwm_protocol": 7,
-		"motor_pwm_rate": 480,
+		"use_unsyncedPwm": 1,
+		"fast_pwm_protocol": 1,
+		"motor_pwm_rate": 2000,
 		"digitalIdlePercent": 5.5,
 		"gyroUse32kHz": 0,
 		"motorPwmInversion": 0,
 		"gyroHighFsr": 0,
-		"gyroMovementCalibThreshold": 0,
-		"gyroCalibDuration": 0,
+		"gyroMovementCalibThreshold": 48,
+		"gyroCalibDuration": 125,
 		"gyroOffsetYaw": 0,
-		"gyroCheckOverflow": 0,
+		"gyroCheckOverflow": 2,
 		"debugMode": 0,
-		"debugModeCount": 0
+		"debugModeCount": 60
 	},
 	"LED_MODE_COLORS": [
 		{
@@ -2533,21 +2563,21 @@
 	"ARMING_CONFIG": {
 		"auto_disarm_delay": 5,
 		"disarm_kill_switch": 0,
-		"small_angle": 100
+		"small_angle": 150
 	},
 	"MOTOR_3D_CONFIG": {
-		"deadband3d_low": 1406,
-		"deadband3d_high": 1514,
-		"neutral": 1460
+		"deadband3d_low": 1470,
+		"deadband3d_high": 1530,
+		"neutral": 1500
 	},
 	"SENSOR_ALIGNMENT": {
 		"align_gyro": 2,
 		"align_acc": 2,
 		"align_mag": 0,
-		"gyro_detection_flags": 1,
-		"gyro_to_use": 0,
-		"gyro_1_align": 2,
-		"gyro_2_align": 0
+		"gyro_detection_flags": 3,
+		"gyro_to_use": 1,
+		"gyro_1_align": 7,
+		"gyro_2_align": 2
 	},
 	"RX_CONFIG": {
 		"serialrx_provider": 2,
@@ -2561,16 +2591,16 @@
 		"rcInterpolationInterval": 19,
 		"rcInterpolationChannels": 2,
 		"airModeActivateThreshold": 1250,
-		"rxSpiProtocol": 8,
+		"rxSpiProtocol": 0,
 		"rxSpiId": 0,
 		"rxSpiRfChannelCount": 0,
-		"fpvCamAngleDegrees": 0,
+		"fpvCamAngleDegrees": 25,
 		"rcSmoothingType": 1,
 		"rcSmoothingInputCutoff": 0,
 		"rcSmoothingDerivativeCutoff": 0,
 		"rcSmoothingInputType": 1,
 		"rcSmoothingDerivativeType": 2,
-		"rcSmoothingAutoSmoothness": 0,
+		"rcSmoothingAutoSmoothness": 10,
 		"usbCdcHidType": 0
 	},
 	"FAILSAFE_CONFIG": {
@@ -2787,24 +2817,24 @@
 					"name": "DYNAMIC_FILTER"
 				}
 			],
-			"_featureMask": 809762824,
+			"_featureMask": 809768072,
 			"_analyticsChanges": {}
 		}
 	},
 	"MOTOR_CONFIG": {
-		"minthrottle": 1070,
+		"minthrottle": 1000,
 		"maxthrottle": 2000,
 		"mincommand": 1000,
-		"motor_count": 0,
-		"motor_poles": 0,
+		"motor_count": 4,
+		"motor_poles": 14,
 		"use_dshot_telemetry": false,
 		"use_esc_sensor": false
 	},
 	"GPS_CONFIG": {
-		"provider": 0,
+		"provider": 1,
 		"ublox_sbas": 0,
 		"auto_config": 1,
-		"auto_baud": 0
+		"auto_baud": 1
 	},
 	"COMPASS_CONFIG": {
 		"mag_declination": 0
@@ -2954,22 +2984,22 @@
 			"linkedTo": 0
 		},
 		{
-			"id": 35,
+			"id": 32,
 			"modeLogic": 0,
 			"linkedTo": 0
 		},
 		{
-			"id": 0,
+			"id": 33,
 			"modeLogic": 0,
 			"linkedTo": 0
 		},
 		{
-			"id": 0,
+			"id": 34,
 			"modeLogic": 0,
 			"linkedTo": 0
 		},
 		{
-			"id": 0,
+			"id": 36,
 			"modeLogic": 0,
 			"linkedTo": 0
 		},

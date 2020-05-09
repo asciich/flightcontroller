@@ -11,7 +11,7 @@ docker run --rm --privileged -v $(pwd):/firmware -it asciich/px_uploader:latest 
 Upload firmware. Replace /dev/ttyACM0 and the firmware path to fit your need.
 
 ```
-px_uploader.py --port /dev/ttyACM0 /firmware/3.6.7/ArduCopter-v2.px4
+px_uploader.py --port /dev/ttyACM0 /firmware/3.6.12/ArduCopter-v2.px4
 ```
 
 ## Additional information/ Sources
