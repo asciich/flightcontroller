@@ -1,0 +1,9 @@
+# Battery configuration for Mobula7HD
+
+set bat_capacity = 1800
+set vbat_max_cell_voltage = 425
+set vbat_full_cell_voltage = 420
+
+# Source: http://www.mateksys.com/?portfolio=f722-se
+set ibata_scale = 179
+set vbat_full_cell_voltage = 420

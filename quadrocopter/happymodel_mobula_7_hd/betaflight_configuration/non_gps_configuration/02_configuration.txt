@@ -1,0 +1,16 @@
+
+# Aircraft name
+set name = asciich
+
+# Lost copter beacon
+beacon RX_LOST
+beacon -RX_SET
+
+# Configure SBUS receiver:
+set serialrx_provider = SBUS
+
+# Enable 3d mode
+feature 3d
+
+# Arm angle
+set small_angle = 180

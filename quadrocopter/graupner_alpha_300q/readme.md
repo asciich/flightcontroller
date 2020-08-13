@@ -6,8 +6,12 @@
 
 ## Settings
 
-* [GR-18 Q4 settings](alpha300q_q04_default_settings.md)
-* [GR-18 Q5 settings](alpha300q_q05_default_settings.md)
+* Betaflight running on Mateksys F722 SE
+    * TODO
+
+* Old settings for GR-18 (Graupner )
+    * [GR-18 Q4 settings](settings/graupner_gr18_settings/alpha300q_q04_default_settings.md)
+    * [GR-18 Q5 settings](settings/graupner_gr18_settings/alpha300q_q05_default_settings.md)
 
 ## More information
 
