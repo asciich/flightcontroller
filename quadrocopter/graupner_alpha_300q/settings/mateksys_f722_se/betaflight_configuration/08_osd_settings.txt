@@ -1,0 +1,2 @@
+# OSD is deactivated in 02_configuration.txt
+

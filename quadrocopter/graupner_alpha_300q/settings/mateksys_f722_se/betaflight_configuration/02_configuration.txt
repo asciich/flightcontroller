@@ -1,0 +1,34 @@
+
+# Aircraft name
+set name = asciich
+
+# Lost copter beacon
+beacon RX_LOST
+beacon -RX_SET
+
+# Configure SBUS receiver:
+set serialrx_provider = SBUS
+
+# Enable 3d mode
+feature 3d
+feature -OSD
+
+# Arm angle
+set small_angle = 180
+
+# MOTOR configuration
+set use_unsynced_pwm = ON
+set motor_pwm_protocol = ONESHOT125
+set motor_pwm_rate = 2000
+set pid_process_denom = 16
+
+set 3d_deadband_low = 1470
+set 3d_deadband_high = 1530
+set 3d_neutral = 1500
+
+
+# GPS configuration
+feature GPS
+set gps_provider = UBLOX
+set gps_auto_baud = ON
+

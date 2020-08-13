@@ -1,0 +1,8 @@
+# Battery configuration for Mobula7HD
+
+set bat_capacity = 300
+set vbat_max_cell_voltage = 435
+
+# Source: https://www.banggood.com/Happymodel-Crazybee-F4-Pro-V2_0-Mobula7-HD-1-3S-Flight-Controller-w-5A-ESC-Compatible-FlyskyFrskyDSMX-Receiver-p-1442471.html?rmmds=myorder&ID=529569&cur_warehouse=CN
+set ibata_scale = 1175
+

@@ -13,4 +13,6 @@ set serialrx_inverted = ON
 # Save settings:
 save
 
+TODO aux 12 as RSSI
+
 
