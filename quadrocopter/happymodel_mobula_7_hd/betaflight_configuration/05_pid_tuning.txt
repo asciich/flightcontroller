@@ -1,0 +1,35 @@
+# PID Settings
+# ============
+
+# Source: http://www.happymodel.cn/wp-content/uploads/2019/03/Upgrade-version-Mobula7-HD-PNP-manualCrazybeeF4-V3.0.pdf
+
+set p_roll = 50
+set p_pitch = 50
+set p_yaw = 72
+
+set i_roll = 45
+set i_pitch = 50
+set i_yaw = 55
+
+set d_roll = 27
+set d_pitch = 30
+set d_yaw = 0
+
+set f_pitch = 60
+set f_roll = 60
+set f_yaw = 100
+
+
+# Rate Settings
+# =============
+
+# Roll and pitch rate to 800 degrees
+set roll_srate = 75
+set pitch_srate = 75
+
+# Yaw rate to 667 degrees
+set yaw_srate = 70
+
+set roll_expo = 30
+set pitch_expo = 30
+set yaw_expo = 30
