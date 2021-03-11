@@ -11,6 +11,6 @@ This document sums up my personal default channel configuration.
 4 -> Aileron   -> Roll
 5 -> Arm motors
 6 -> Pre arm
-7 -> cam and osd selection
+7 -> cam selection
 8 <Currently not used>
 ```
