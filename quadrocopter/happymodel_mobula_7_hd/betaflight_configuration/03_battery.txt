@@ -1,0 +1,7 @@
+# Battery configuration for Mobula7HD
+
+set bat_capacity = 300
+set vbat_max_cell_voltage = 435
+
+# For board version 2
+set ibata_scale = 1175 # Crazybee f4 pro v2

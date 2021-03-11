@@ -2,6 +2,5 @@ set mid_rc = 1500
 set min_check = 1000
 set max_check = 2000
 
-set rssi_channel = 8 # Do not use 16 when only transmitting 8 channels
-
 map TREA1234
+

@@ -1,7 +1,9 @@
 set mid_rc = 1500
-set min_check = 1000
-set max_check = 2000
+set min_check = 988
+set max_check = 2011
 
-set rssi_channel = 8 # Do not use 16 when only transmitting 8 channels
+set serialrx_provider = CRSF
+set serialrx_halfduplex = OFF
+set serialrx_inverted = OFF
 
 map TREA1234
