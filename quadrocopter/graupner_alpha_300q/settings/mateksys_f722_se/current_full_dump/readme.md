@@ -1,0 +1,1 @@
+This directory contains a full betaflight dump currently used for Graupner Alpha 300q.
