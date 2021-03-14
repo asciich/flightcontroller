@@ -16,7 +16,7 @@ set small_angle = 180
 set use_unsynced_pwm = OFF
 set motor_pwm_protocol = DSHOT600
 set motor_pwm_rate = 2000
-set pid_process_denom = 16
+set pid_process_denom = 1
 
 
 # 3d mode settings
