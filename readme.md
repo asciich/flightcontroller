@@ -14,3 +14,6 @@ This repository contains configuration tools and settings for RC flight controll
 * [FliteTest Mini Guinea](plane/graupner-gr-18/settings/ft_mini_guinea)
 * [Graupner Alpha 110q](quadrocopter/graupner_alpha_110q)
 * [Graupner Alpha 300q](quadrocopter/graupner_alpha_300q)
+
+## Always Fly Safe!
+
