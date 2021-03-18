@@ -10,5 +10,5 @@ set vbat_divider = 10
 set vbat_multiplier = 1
 
 # Source: https://www.hobbywing.com/products/enpdf/XRotorMico60ADShot1200en.pdf
-set ibata_scale = 64
+set ibata_scale = 70
 set ibata_offset = 0
