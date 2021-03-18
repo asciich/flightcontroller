@@ -1,0 +1,9 @@
+# Serial_ports configuration:
+
+# serial configuration for armattan badger
+serial 20 1 115200 57600 0 115200
+serial 0 2 115200 57600 0 115200
+serial 1 64 115200 57600 0 115200
+serial 2 2048 115200 57600 0 115200
+serial 3 512 115200 57600 57600 115200
+serial 5 0 115200 57600 0 115200

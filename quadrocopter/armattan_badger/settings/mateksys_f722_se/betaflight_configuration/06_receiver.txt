@@ -1,0 +1,11 @@
+# Configure CRSF receiver:
+set serialrx_provider = CRSF
+set serialrx_inverted = OFF
+set serialrx_halfduplex = OFF
+
+set mid_rc = 1500
+set min_check = 988
+set max_check = 2011
+
+map TREA1234
+

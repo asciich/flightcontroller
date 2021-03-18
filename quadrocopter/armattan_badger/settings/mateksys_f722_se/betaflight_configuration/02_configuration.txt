@@ -1,0 +1,36 @@
+
+# Aircraft name
+set name = asciich
+
+# Lost copter beacon
+beacon RX_LOST
+beacon -RX_SET
+
+# Enable 3d mode
+feature 3d
+
+# Arm angle
+set small_angle = 180
+
+# MOTOR configuration
+set use_unsynced_pwm = OFF
+set motor_pwm_protocol = DSHOT600
+set motor_pwm_rate = 2000
+set pid_process_denom = 1
+
+
+# 3d mode settings
+set 3d_deadband_low = 1470
+set 3d_deadband_high = 1530
+set 3d_neutral = 1500
+set 3d_deadband_throttle = 50
+set 3d_limit_low = 1000
+set 3d_limit_high = 2000
+set 3d_switched_mode = OFF
+
+
+# GPS configuration
+feature GPS
+set gps_provider = UBLOX
+set gps_auto_baud = ON
+
