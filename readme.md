@@ -23,3 +23,6 @@ These are my personal fly safe rules:
 * Daily training:
     * Whenever possible use the controller once a day. Simulators also count for daily training.
     * Fly at least once a week outdoors. This is why I started [#MeineLuftaufnahmeDerWoche on Twitter](https://twitter.com/hashtag/MeineLuftaufnahmeDerWoche) to keep up the motivation.
+* Always use a DVR:
+    * Very useful to find a lost aircraft after a crash.
+    * Also use it to analyze flights. For example my [first longer flight with TBS Tracer installed](https://www.youtube.com/watch?v=0_jYAc9Eyis).
