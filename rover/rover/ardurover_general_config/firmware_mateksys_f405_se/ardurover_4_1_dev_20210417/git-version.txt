@@ -1,0 +1,11 @@
+commit 323cbe47d2c4f49f796f88e07e8f612a50ef8cb4
+Author: Michael Oborne <mich146@hotmail.com>
+Date:   Fri Apr 16 07:53:29 2021 +1000
+
+    SITL: fixup SIM_BAR parameter descriptions
+    
+    Co-authored-by: Randy Mackay <rmackay9@yahoo.com>
+    
+    this fixs a issue with MP param doc parser caused by a syntax change
+
+APMVERSION: ArduRover V4.1.0-dev
