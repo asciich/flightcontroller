@@ -20,6 +20,7 @@ This repository contains configuration tools and settings for RC flight controll
 These are my personal fly safe rules:
 
 * NEVER fly above people.
+* Always ensure your failsafe works as expected.
 * Daily training:
     * Whenever possible use the controller once a day. Simulators also count for daily training.
     * Fly at least once a week outdoors. This is why I started [#MeineLuftaufnahmeDerWoche on Twitter](https://twitter.com/hashtag/MeineLuftaufnahmeDerWoche) to keep up the motivation.
