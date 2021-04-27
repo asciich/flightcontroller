@@ -3,6 +3,11 @@
 This repository contains configuration tools and settings for RC flight controller used for projects shown on my personal blog
 [asciich.ch](https://asciich.ch/)
 
+## General topics
+
+* [General Flightcontroller topics](general_flightcontroller/)
+    * [Default channel configuration](general_flightcontroller/default_channel_configuration.md)
+
 ## Tools
 
 * [AMavlink](tools/amavlink/): MAVLink communication CLI
