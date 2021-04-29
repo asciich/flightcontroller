@@ -15,7 +15,7 @@ This document sums up my personal default channel configuration.
 8 <Currently not used>
 ```
 
-## Default channel configuration for Arducopter
+## Default channel configuration for ArduCopter
 
 ```
 1 -> Aileron   -> Roll
@@ -27,3 +27,17 @@ This document sums up my personal default channel configuration.
 7 -> Flight Mode
 8 -> RTL
 ```
+
+## Default channel configuration for ArduRover
+
+```
+1 -> Aileron   -> Roll
+2 -> Elevation -> Pitch
+3 -> Throttle  -> Throttle
+4 -> Rudder    -> Yaw
+5 -> Arm motors
+6 -> Motor Emergency Stop
+7 -> Drive mode (flight mode)
+8 -> RTL
+```
+

@@ -25,7 +25,7 @@ SERIAL7 = USER = USART2 (only if BRD_ALT_CONFIG =1)
 BRD_ALT_CONFIG = 1
 ```
 
-## Mavlink Output on UART3 for TBS Tracer
+## Mavlink Output on UART3 for TBS Tracer/ Crossfire CRSF
 
 ```
 SERIAL3_PROTOCOL = 2 # Mavlink V2
@@ -40,7 +40,7 @@ SERIAL5_BAUD = 38
 SERIAL5_OPTIONS = 0
 ```
 
-# TBS Tracer Crossfire Protocol on UART7
+# TBS Tracer/ Crossfire Protocol CRSF on UART7
 
 ```
 SERIAL7_PROTOCOL = 23 # Automatically detect input.
