@@ -33,11 +33,25 @@ SERIAL3_BAUD = 57
 SERIAL3_OPTIONS = 0
 ```
 
+## UART4 is not used
+
+```
+SERIAL4_PROTOCOL = -1 # -1 = Not used
+SERIAL4_OPTIONS = 0
+```
+
 ## GPS on UART5
 ```
 SERIAL5_PROTOCOL = 5 # GPS
 SERIAL5_BAUD = 38
 SERIAL5_OPTIONS = 0
+```
+
+## USART6 is not used
+
+```
+SERIAL6_PROTOCOL = -1 # -1 = Not used
+SERIAL6_OPTIONS = 0
 ```
 
 # TBS Tracer/ Crossfire Protocol CRSF on UART7
