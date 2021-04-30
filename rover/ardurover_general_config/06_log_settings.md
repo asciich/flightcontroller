@@ -6,5 +6,6 @@ docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlin
 
 
 ```
-LOG_BACKEND_TYPE = 1 # Logging only to file, not trough MavLink
+LOG_BACKEND_TYPE = 0 # Logging disabled
+# LOG_BACKEND_TYPE = 1 # Logging only to file, not trough MavLink
 ```

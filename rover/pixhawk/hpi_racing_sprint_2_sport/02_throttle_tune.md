@@ -33,7 +33,7 @@ docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlin
         ```
         # RC8_OPTION = 50 # learn cruise
         ```
-    * Drive at the throttle speed and puth learn cruise throttle switch high for a few seconds. The parameters CRUISE_THROTTLE and CRUISE_SPEED are now updated and the new values are shown in the MavProxy command line output.
+    * Drive at the throttle speed and put learn cruise throttle switch high for a few seconds. The parameters CRUISE_THROTTLE and CRUISE_SPEED are now updated and the new values are shown in the MavProxy command line output.
         ```
         CRUISE_THROTTLE = 31
         CRUISE_SPEED = 6.1
