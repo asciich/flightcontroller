@@ -11,3 +11,9 @@ docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlin
 SERVO1_REVERSED = 1 # 1 = Reverse servo: https://ardupilot.org/rover/docs/parameters.html#servo1-reversed-servo-reverse
 ```
 
+## Battery settings
+
+```
+BATT_CAPACITY = 2200 # mAh
+```
+
