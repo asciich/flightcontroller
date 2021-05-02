@@ -183,7 +183,7 @@ OSD1_XTRACK_EN = 0
 
 # Total distance flown
 OSD1_DIST_EN = 1
-OSD1_DIST_X = 25
+OSD1_DIST_X = 23
 OSD1_DIST_Y = 3
 
 # Flight stats
@@ -200,10 +200,10 @@ OSD1_CLIMBEFF_EN = 0
 # Flight efficiency
 OSD1_EFF_EN = 0
 
-# Clock panel
+# Clock panel (shows time)
 OSD1_CLK_EN = 1
 OSD1_CLK_X = 10
-OSD1_CLK_Y = 0
+OSD1_CLK_Y = 1
 
 # Things only on MSP (not MAX7456)
 OSD1_SIDEBARS_EN = 0
