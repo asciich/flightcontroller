@@ -20,4 +20,3 @@ SERVO1_MAX = 1817   # default = 1100
 ```
 BATT_CAPACITY = 2200 # mAh
 ```
-
