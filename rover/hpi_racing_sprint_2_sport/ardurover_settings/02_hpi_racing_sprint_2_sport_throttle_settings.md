@@ -1,8 +1,8 @@
-# Himoto Hummer 1/18 throttle settings
+# HPI racing sprint 2 sport throttle settings
 
 To upload these settings use:
 ```
-docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --upload /params/02_himoto_hummer_1to18_throttle_settings.md"
+docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --upload /params/02_hpi_racing_sprint_2_sport_throttle_settings.md"
 ```
 
 ## General throttle settings

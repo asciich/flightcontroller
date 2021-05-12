@@ -1,5 +1,7 @@
 
+```
 docker run --net=host --rm -v $(pwd):/params -it asciich/amavlink sh -c "amavlink paramfile --upload /params/02_motor_settings.md"
+```
 
 ## ESC configuration
 

@@ -6,6 +6,7 @@ This repository contains configuration tools and settings for RC flight controll
 ## General topics
 
 * [General Flightcontroller topics](general_flightcontroller/)
+    * [Current sensor adjustment](general_flightcontroller/current_sensor_adjustment.md)
     * [Default channel configuration](general_flightcontroller/default_channel_configuration.md)
 
 ## Tools

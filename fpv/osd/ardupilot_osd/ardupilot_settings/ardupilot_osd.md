@@ -39,6 +39,11 @@ OSD1_ENABLE = 1  # 1 = Enabled
 OSD2_ENABLE = 0  # 0 = Disabled
 OSD3_ENABLE = 0  # 0 = Disabled
 OSD4_ENABLE = 0  # 0 = Disabled
+
+# Parameter adjustment screens are not available in ArduRover:
+# https://ardupilot.org/plane/docs/common-paramosd.html
+# OSD5_ENABLE = 1
+# OSD6_ENABLE = 1
 ```
 
 ## Display elements
