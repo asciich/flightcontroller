@@ -8,18 +8,8 @@
 
 ## Upload  bootloader:
 
-use ```bootloader/upload_bootloader.sh```
+use ```./bootloader/upload_bootloader.sh```
 
 ## Upload firmware
 
-
-```
-docker run --rm --privileged -v $(pwd):/firmware -it asciich/px_uploader:latest /bin/bash
-```
-
-Upload firmware. Replace /dev/ttyACM0 and the firmware path to fit your need.
-
-```
-px_uploader.py --port /dev/ttyACM0 /firmware/arducopter_4_1_dev_20210212/arducopter.apj
-```
-
+use ```./ardurover_4_1_dev_20210417/upload_firmware.sh```

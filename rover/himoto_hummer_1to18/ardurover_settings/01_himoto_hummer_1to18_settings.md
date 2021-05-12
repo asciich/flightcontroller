@@ -12,7 +12,7 @@ SERVO1_REVERSED = 1 # 1 = Reverse servo: https://ardupilot.org/rover/docs/parame
 
 SERVO1_TRIM = 1417  # default = 1500
 SERVO1_MIN = 1017   # default = 1100
-SERVO1_MAX = 1817   # default = 1100
+SERVO1_MAX = 1817   # default = 1900
 ```
 
 ## Battery settings

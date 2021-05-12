@@ -62,3 +62,4 @@ RC_OPTIONS = 256 # Enable Crossfire passtrough
 RSSI_TYPE=3
 ```
 
+Reboot the fligthcontroller
