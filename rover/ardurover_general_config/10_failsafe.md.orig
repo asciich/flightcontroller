@@ -21,8 +21,13 @@ FS_GCS_ENABLE = 0 # No action if connection lost to ground station
 This is also triggered if signal gets lost on CRSF or SBUS
 
 ```
+<<<<<<< HEAD
 FS_THR_ENABLE = 1 # Throttle failsafe enabled -> detect signal loss on CRSF
+=======
+FS_THR_ENABLE = 1 # No throttle failsafe
+>>>>>>> 5b9fa23b2428ec17e789bdbd857f8cb3c8e6e31a
 FS_THR_VALUE = 910 # Minimal value = 910
+FS_ACTION = 2 # Hold mode
 ```
 
 ## Battery failsafe
