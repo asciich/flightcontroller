@@ -118,9 +118,9 @@ OSD1_HOME_X = 10
 OSD1_Home_Y = 2
 
 # Displays heading (in degrees)
-OSD1_HEADING_EN = 0
-OSD1_HEADING_X = 13  # default = 13
-OSD1_HEADING_Y = 2   # default = 2
+OSD1_HEADING_EN = 1
+OSD1_HEADING_X = 5  # default = 13
+OSD1_HEADING_Y = 1   # default = 2
 
 # Throttle sent to motors
 OSD1_THROTTLE_EN = 1
