@@ -1,4 +1,3 @@
-# Battery configuration for Mobula7HD
 
 set bat_capacity = 1800
 set vbat_max_cell_voltage = 425

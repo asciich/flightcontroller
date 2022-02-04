@@ -1,0 +1,20 @@
+
+set bat_capacity = 450
+
+set ibat_lpf_period = 10
+set ibata_scale = 1100
+set ibata_offset = 0
+set ibatv_scale = 0
+set ibatv_offset = 0
+
+set vbat_duration_for_warning = 0
+set vbat_duration_for_critical = 0
+set vbat_scale = 110
+set vbat_divider = 10
+set vbat_multiplier = 1
+
+set vbat_max_cell_voltage = 430
+set vbat_full_cell_voltage = 410
+set vbat_min_cell_voltage = 330
+set vbat_warning_cell_voltage = 350
+set vbat_hysteresis = 1

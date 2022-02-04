@@ -1,0 +1,125 @@
+# 
+
+# diff
+
+# version
+# Betaflight / BETAFPVF4SX1280 (BHER) 4.3.0 Jan  9 2022 / 11:42:12 (ee8560af4) MSP API: 1.44
+
+# start the command batch
+batch start
+
+board_name BETAFPVF4SX1280
+
+# name: asciich
+
+# resources
+resource PPM 1 A10
+
+# timer
+timer A02 AF2
+# pin A02: TIM5 CH3 (AF2)
+
+# dma
+dma pin A10 NONE
+
+# serial
+serial 30 2048 115200 57600 0 115200
+
+# beacon
+beacon RX_LOST
+
+# map
+map TREA1234
+
+# led
+led 0 0,0::A:0
+led 1 1,0::A:0
+
+# aux
+aux 0 0 0 1300 2100 0 0
+aux 1 36 1 1700 2100 0 0
+
+# vtxtable
+vtxtable bands 5
+vtxtable channels 8
+vtxtable band 1 BOSCAM_A A FACTORY 5865 5845 5825 5805 5785 5765 5745 5725
+vtxtable band 2 BOSCAM_B B FACTORY 5733 5752 5771 5790 5809 5828 5847 5866
+vtxtable band 3 BOSCAM_E E FACTORY 5705 5685 5665 5645 5885 5905 5925 5945
+vtxtable band 4 FATSHARK F FACTORY 5740 5760 5780 5800 5820 5840 5860 5880
+vtxtable band 5 RACEBAND R FACTORY 5658 5695 5732 5769 5806 5843 5880 5917
+vtxtable powerlevels 4
+vtxtable powervalues 0 1 2 3
+vtxtable powerlabels 25 100 200 350
+
+# master
+set dyn_notch_max_hz = 500
+set acc_trim_pitch = 2
+set acc_calibration = -59,29,96,1
+set min_check = 1000
+set max_check = 2000
+set dshot_idle_value = 700
+set motor_pwm_protocol = DSHOT600
+set bat_capacity = 450
+set ibata_scale = 470
+set yaw_motors_reversed = ON
+set small_angle = 180
+set osd_vbat_pos = 2379
+set osd_rssi_pos = 32
+set osd_link_quality_pos = 2112
+set osd_rssi_dbm_pos = 2144
+set osd_flymode_pos = 2423
+set osd_g_force_pos = 2393
+set osd_throttle_pos = 2456
+set osd_crosshairs_pos = 2253
+set osd_ah_sbar_pos = 2254
+set osd_ah_pos = 14414
+set osd_current_pos = 2368
+set osd_mah_drawn_pos = 2434
+set osd_craft_name_pos = 2442
+set osd_gps_speed_pos = 289
+set osd_gps_lon_pos = 81
+set osd_gps_lat_pos = 49
+set osd_gps_sats_pos = 32
+set osd_home_dir_pos = 77
+set osd_home_dist_pos = 42
+set osd_flight_dist_pos = 120
+set osd_altitude_pos = 2358
+set osd_power_pos = 2402
+set osd_warnings_pos = 14697
+set osd_avg_cell_voltage_pos = 331
+set vtx_band = 4
+set vtx_channel = 5
+set vtx_power = 3
+set vtx_freq = 5820
+# set expresslrs_uid = REMOVED!
+set expresslrs_rate_index = 1
+set name = asciich
+
+profile 0
+
+# profile 0
+set p_pitch = 92
+set i_pitch = 117
+set d_pitch = 94
+set f_pitch = 87
+set p_roll = 89
+set i_roll = 111
+set d_roll = 90
+set f_roll = 82
+set p_yaw = 88
+set i_yaw = 117
+set f_yaw = 82
+set d_min_roll = 0
+set d_min_pitch = 0
+
+rateprofile 0
+
+# rateprofile 0
+set roll_srate = 80
+set pitch_srate = 80
+set tpa_rate = 60
+
+# end the command batch
+batch end
+
+# 

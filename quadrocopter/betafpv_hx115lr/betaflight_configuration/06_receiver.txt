@@ -1,0 +1,10 @@
+
+# Cap throttle values above 2000:
+# Source: https://github.com/martinbudden/betaflight/blob/master/docs/Controls.md
+set max_check = 2000
+
+set mid_rc = 1500
+set min_check = 1000
+set max_check = 2000
+
+map TREA1234
