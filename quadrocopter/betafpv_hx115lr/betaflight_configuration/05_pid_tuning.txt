@@ -1,0 +1,24 @@
+# Source: https://support.betafpv.com/hc/en-us/article_attachments/4412321950489/BTFL_cli_F4_12A_ELRS_V2.0_NEW.txt
+
+
+# master
+set dyn_notch_max_hz = 500
+
+profile 0
+
+# profile 0
+set p_pitch = 92
+set i_pitch = 117
+set d_pitch = 94
+set f_pitch = 87
+set p_roll = 89
+set i_roll = 111
+set d_roll = 90
+set f_roll = 82
+set p_yaw = 88
+set i_yaw = 117
+set f_yaw = 82
+set d_min_roll = 0
+set d_min_pitch = 0
+
+rateprofile 0
